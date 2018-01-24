@@ -10,6 +10,7 @@ int main() {
     std::string input;
 
     while (input != "exit") {
+        std::cout << ">>> ";
         std::cin >> input;
     }
 
