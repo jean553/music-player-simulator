@@ -4,14 +4,23 @@ int main() {
 
     std::cout << "Imaginary player" << std::endl;
 
-    /* TODO: #1 comparisons of the input are made on std::string types,
-       and this is clearly heavy compared to an integer comparison */
-
     std::string input;
 
     while (input != "exit") {
-        std::cout << ">>> ";
-        std::cin >> input;
+
+        /* use std::getline in order to
+           considere multiple words */
+        std::getline(
+            std::cin,
+            input
+        );
+
+        constexpr std::size_t FIRST_CHARACTER_INDEX {0};
+        constexpr char KEYWORDS_SEPARATOR {' '};
+        std::string command = input.substr(
+            FIRST_CHARACTER_INDEX,
+            input.find(KEYWORDS_SEPARATOR)
+        );
     }
 
     return EXIT_SUCCESS;
