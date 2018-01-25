@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 
+/**
+ * TODO: add documentation
+ */
+void displayInputError() {
+    std::cout << "Incorrect command." << std::endl;
+}
+
 int main() {
 
     std::cout << "Imaginary player" << std::endl;
@@ -31,24 +38,23 @@ int main() {
             separatorIndex
         );
 
-        if (command == "add_track") {
+        std::string option;
 
-            /* TODO: try/catch should be done before checking
-               the command values, as long as we know
-               that the next checked commands all require an option */
-            try {
-                std::string track = input.substr(separatorIndex);
-
-                playlist.push_back(track);
-            }
-            catch (std::out_of_range&) {
-                std::cout << "Option required." << std::endl;
-            }
-
+        try {
+            option = input.substr(separatorIndex);
+        }
+        catch (std::out_of_range&) {
+            displayInputError();
             continue;
         }
 
-        std::cout << "Unknown command." << std::endl;
+        if (command == "add_track") {
+
+            playlist.push_back(option);
+            continue;
+        }
+
+        displayInputError();
     };
 
     return EXIT_SUCCESS;
