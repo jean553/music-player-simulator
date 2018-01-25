@@ -1,13 +1,21 @@
+/**
+ * @file main.cpp
+ * @author Jean LELIEVRE <Jean.LELIEVRE@supinfo.com>
+ */
+
 #include <iostream>
 #include <vector>
 
 /**
- * TODO: add documentation
+ * @brief displays an error message for an incorrect input
  */
 void displayInputError() {
     std::cout << "Incorrect command." << std::endl;
 }
 
+/**
+ *
+ */
 int main() {
 
     std::cout << "Imaginary player" << std::endl;
