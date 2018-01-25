@@ -1,17 +1,6 @@
 #include <iostream>
 #include <vector>
 
-/**
- * TODO: add documentation
- */
-void addTrack(
-    std::vector<std::string>& playlist,
-    const std::string& track
-) {
-
-    /* TODO: to define */
-}
-
 int main() {
 
     std::cout << "Imaginary player" << std::endl;
@@ -50,10 +39,7 @@ int main() {
             try {
                 std::string track = input.substr(separatorIndex);
 
-                addTrack(
-                    playlist,
-                    track
-                );
+                playlist.push_back(track);
             }
             catch (std::out_of_range&) {
                 std::cout << "Option required." << std::endl;
