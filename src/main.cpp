@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -46,9 +47,23 @@ int main() {
             separatorIndex
         );
 
+        if (command == "list") {
+
+            std::for_each(
+                playlist.cbegin(),
+                playlist.cend(),
+                [](const std::string& item) {
+                    std::cout << item << std::endl;
+                }
+            );
+
+            continue;
+        }
+
         std::string option;
 
         try {
+            /* FIXME: considere the first space as a character */
             option = input.substr(separatorIndex);
         }
         catch (std::out_of_range&) {
