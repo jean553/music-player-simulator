@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -45,6 +46,19 @@ int main() {
             FIRST_CHARACTER_INDEX,
             separatorIndex
         );
+
+        if (command == "list") {
+
+            std::for_each(
+                playlist.cbegin(),
+                playlist.cend(),
+                [](const std::string& item) {
+                    std::cout << item << std::endl;
+                }
+            );
+
+            continue;
+        }
 
         std::string option;
 
