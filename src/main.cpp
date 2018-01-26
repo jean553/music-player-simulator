@@ -63,6 +63,7 @@ int main() {
         std::string option;
 
         try {
+            /* FIXME: considere the first space as a character */
             option = input.substr(separatorIndex);
         }
         catch (std::out_of_range&) {
