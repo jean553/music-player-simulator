@@ -1,3 +1,4 @@
 *.swp
 music-player-simulator
 doc/
+build/

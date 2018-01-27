@@ -5,7 +5,9 @@
 ## Compilation
 
 ```sh
-g++ src/main.cpp -o music-player-simulator
+mkdir build && cd build/
+cmake ..
+make
 ```
 
 ## Generate documentation
