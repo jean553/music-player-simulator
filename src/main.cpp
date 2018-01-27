@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <algorithm>
 
 /**
@@ -56,32 +55,7 @@ int main() {
         }
 
         if (command == "remove_duplicates") {
-
-            /* tries to insert every item one by one into an unordered set
-               (unordered only for performance purposes);
-               check if the insertion has failed (item already there),
-               then simply remove the item from the playlist */
-
-            std::unordered_set<std::string> temporarySet;
-
-            /* use a basic for loop with an index instead of a more modern
-               way to iterate because manipulating the index during
-               an iteration is required in this case */
-
-            for (
-                auto index = 0u;
-                index < playlist.size();
-                index += 1
-            ) {
-
-                if (temporarySet.insert(playlist[index]).second) {
-                    continue;
-                }
-
-                playlist.erase(playlist.begin() + index);
-                index -= 1;
-            }
-
+            removeDuplicates(playlist);
             continue;
         }
 
