@@ -40,8 +40,8 @@ int main() {
         }
 
         constexpr std::size_t FIRST_CHARACTER_INDEX {0};
-        constexpr char KEYWORDS_SEPARATOR {' '};
-        const auto separatorIndex = input.find(KEYWORDS_SEPARATOR);
+        constexpr char SEPARATOR {' '};
+        const auto separatorIndex = input.find(SEPARATOR);
         std::string command = input.substr(
             FIRST_CHARACTER_INDEX,
             separatorIndex
