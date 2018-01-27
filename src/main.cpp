@@ -78,6 +78,24 @@ int main() {
             continue;
         }
 
+        if (command == "remove_track") {
+
+            const auto index = std::find(
+                playlist.cbegin(),
+                playlist.cend(),
+                option
+            );
+
+            if (index == playlist.cend()) {
+                std::cout << "Sound not found." << std::endl;
+                continue;
+            }
+
+            playlist.erase(index);
+
+            continue;
+        }
+
         displayInputError();
     };
 
