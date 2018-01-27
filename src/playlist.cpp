@@ -1,3 +1,8 @@
+/**
+ * @file playlist.cpp
+ * @author Jean LELIEVRE <Jean.LELIEVRE@supinfo.com>
+ */
+
 #include "playlist.hpp"
 
 #include <iostream>
