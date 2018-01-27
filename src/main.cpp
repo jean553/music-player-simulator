@@ -76,10 +76,16 @@ int main() {
         }
         else if (command == "play_track") {
 
-            playTrack(
-                playlist,
-                option
-            );
+            try {
+                Track track = loadTrack(
+                    playlist,
+                    option
+                );
+            }
+            catch (std::invalid_argument& exception) {
+                std::cout << exception.what() << std::endl;
+                continue;
+            }
         }
         else if (command == "remove_track") {
 
