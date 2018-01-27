@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include <algorithm>
 
 /**
@@ -55,6 +56,28 @@ int main() {
                 [](const std::string& item) {
                     std::cout << item << std::endl;
                 }
+            );
+
+            continue;
+        }
+
+        if (command == "remove_duplicates") {
+
+            /* use a temporary set to automatically remove
+               all the duplicates from the playlist;
+               remove every items from the playlist
+               and add them back from the set */
+
+            /* FIXME: the items should be kept ordered */
+
+            const std::set<std::string> temporarySet(
+                playlist.cbegin(),
+                playlist.cend()
+            );
+
+            playlist.assign(
+                temporarySet.cbegin(),
+                temporarySet.cend()
             );
 
             continue;
