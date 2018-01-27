@@ -4,6 +4,7 @@
  */
 
 #include "playlist.hpp"
+#include "track.hpp"
 
 #include <iostream>
 #include <unordered_set>
@@ -80,7 +81,18 @@ void removeTrack(
  */
 void playTrack(
     const std::vector<std::string>& playlist,
-    const std::string& track
+    const std::string& filename
 ) {
-    /* TODO: to define */
+
+    const auto index = std::find(
+        playlist.cbegin(),
+        playlist.cend(),
+        filename
+    );
+
+    if (index == playlist.cend()) {
+        return;
+    }
+
+    Track track(filename);
 }
