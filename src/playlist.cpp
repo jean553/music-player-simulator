@@ -69,7 +69,6 @@ void removeTrack(
     );
 
     if (index == playlist.cend()) {
-        std::cout << "Sound not found." << std::endl;
         return;
     }
 
