@@ -42,4 +42,15 @@ void removeTrack(
     const std::string& track
 );
 
+/**
+ * @brief loads the given file and plays sound into dedicated thread
+ *
+ * @param playlist the playlist to use to find tracks
+ * @param track the file name of the track to read (as stored in the playlist)
+ */
+void playTrack(
+    const std::vector<std::string>& playlist,
+    const std::string& track
+);
+
 #endif
