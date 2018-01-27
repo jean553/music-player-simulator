@@ -60,19 +60,20 @@ int main() {
             continue;
         }
 
-        std::string option;
-
-        try {
-            /* FIXME: considere the first space as a character */
-            option = input.substr(separatorIndex);
+        if (separatorIndex == std::string::npos) {
+            displayInputError();
+            continue;
         }
-        catch (std::out_of_range&) {
+
+        /* add one to do not include the prefixed space into the file name */
+        std::string option = input.substr(separatorIndex + 1);
+
+        if (option.find_first_not_of(SEPARATOR) == std::string::npos) {
             displayInputError();
             continue;
         }
 
         if (command == "add_track") {
-
             playlist.push_back(option);
             continue;
         }
