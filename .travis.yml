@@ -1,0 +1,13 @@
+sudo: required
+language: cpp
+dist: trusty
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-6
+
+script: 
+    - g++ src/main.cpp -o output
