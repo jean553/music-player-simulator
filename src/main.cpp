@@ -75,10 +75,8 @@ int main() {
 
         if (command == "add_track") {
             playlist.push_back(option);
-            continue;
         }
-
-        if (command == "remove_track") {
+        else if (command == "remove_track") {
 
             const auto index = std::find(
                 playlist.cbegin(),
@@ -93,10 +91,9 @@ int main() {
 
             playlist.erase(index);
 
-            continue;
+        } else {
+            displayInputError();
         }
-
-        displayInputError();
     };
 
     return EXIT_SUCCESS;
