@@ -13,3 +13,17 @@ struct Track::Impl {
     std::string codec;
     unsigned int duration;
 };
+
+/**
+ *
+ */
+Track::Track(
+    const std::string title,
+    const std::string codec
+) : impl(std::make_unique<Impl>()) {
+}
+
+/**
+ *
+ */
+Track::~Track() = default;

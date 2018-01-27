@@ -4,10 +4,12 @@
  */
 
 #include "playlist.hpp"
+#include "track.hpp"
 
 #include <iostream>
 #include <unordered_set>
 #include <algorithm>
+#include <fstream>
 
 /**
  *
@@ -80,7 +82,51 @@ void removeTrack(
  */
 void playTrack(
     const std::vector<std::string>& playlist,
-    const std::string& track
+    const std::string& filename
 ) {
-    /* TODO: to define */
+
+    const auto index = std::find(
+        playlist.cbegin(),
+        playlist.cend(),
+        filename
+    );
+
+    /* TODO: there are multiple reasons to exit
+       the function before the end; check if using
+       exceptions here is better */
+
+    if (index == playlist.cend()) {
+        return;
+    }
+
+    std::ifstream file(filename);
+
+    if (not file.is_open()) {
+        return;
+    }
+
+    std::string title;
+    std::string codec;
+
+    getline(
+        file,
+        title,
+        '\n'
+    );
+
+    getline(
+        file,
+        codec,
+        '\n'
+    );
+
+    /* FIXME: read duration and content */
+
+    Track track(
+        title,
+        codec
+    );
+
+    /* TODO: start a thread with the playing track
+       and output data to the user */
 }
