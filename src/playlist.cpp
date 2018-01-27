@@ -6,7 +6,6 @@
 #include "playlist.hpp"
 
 #include <iostream>
-#include <vector>
 #include <unordered_set>
 #include <algorithm>
 
@@ -53,4 +52,26 @@ void removeDuplicates(std::vector<std::string>& playlist) {
         playlist.erase(playlist.begin() + index);
         index -= 1;
     }
+}
+
+/**
+ *
+ */
+void removeTrack(
+    std::vector<std::string>& playlist,
+    const std::string& track
+) {
+
+    const auto index = std::find(
+        playlist.cbegin(),
+        playlist.cend(),
+        track
+    );
+
+    if (index == playlist.cend()) {
+        std::cout << "Sound not found." << std::endl;
+        return;
+    }
+
+    playlist.erase(index);
 }

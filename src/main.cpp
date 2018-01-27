@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -77,19 +76,10 @@ int main() {
         }
         else if (command == "remove_track") {
 
-            const auto index = std::find(
-                playlist.cbegin(),
-                playlist.cend(),
+            removeTrack(
+                playlist,
                 option
             );
-
-            if (index == playlist.cend()) {
-                std::cout << "Sound not found." << std::endl;
-                continue;
-            }
-
-            playlist.erase(index);
-
         } else {
             displayInputError();
         }

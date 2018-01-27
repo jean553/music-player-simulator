@@ -27,4 +27,19 @@ void listAllTracks(const std::vector<std::string>& playlist);
  */
 void removeDuplicates(std::vector<std::string>& playlist);
 
+/**
+ * @brief removes one track from the playlist
+ *
+ * @param playlist the playlist to edit
+ * @param track the track name to remove
+ *
+ * the passed playlist is not constant
+ * because the function might remove
+ * one item from it
+ */
+void removeTrack(
+    std::vector<std::string>& playlist,
+    const std::string& track
+);
+
 #endif
