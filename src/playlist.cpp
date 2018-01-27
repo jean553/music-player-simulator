@@ -91,13 +91,19 @@ void playTrack(
         filename
     );
 
+    /* TODO: there are multiple reasons to exit
+       the function before the end; check if using
+       exceptions here is better */
+
     if (index == playlist.cend()) {
         return;
     }
 
     std::ifstream file(filename);
 
-    /* FIXME: check what to do in case of error when opening the file */
+    if (not file.is_open()) {
+        return;
+    }
 
     std::string title;
     std::string codec;
