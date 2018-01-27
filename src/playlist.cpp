@@ -126,4 +126,7 @@ void playTrack(
         title,
         codec
     );
+
+    /* TODO: start a thread with the playing track
+       and output data to the user */
 }
