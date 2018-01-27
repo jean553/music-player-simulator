@@ -10,4 +10,4 @@ addons:
     - g++-6
 
 script: 
-    - g++ src/main.cpp -o output
+    - g++-6 -std=c++14 src/main.cpp -o output
