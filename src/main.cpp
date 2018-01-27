@@ -3,6 +3,8 @@
  * @author Jean LELIEVRE <Jean.LELIEVRE@supinfo.com>
  */
 
+#include "playlist.hpp"
+
 #include <iostream>
 #include <vector>
 #include <unordered_set>
@@ -49,15 +51,7 @@ int main() {
         );
 
         if (command == "list") {
-
-            std::for_each(
-                playlist.cbegin(),
-                playlist.cend(),
-                [](const std::string& item) {
-                    std::cout << item << std::endl;
-                }
-            );
-
+            listAllTracks(playlist);
             continue;
         }
 
