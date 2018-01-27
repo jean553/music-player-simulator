@@ -34,8 +34,15 @@ struct Track {
      */
     ~Track();
 
+    /**
+     * @brief move constructor in order to automatically remove
+     * all the copy operations and ensure implementation
+     * unique pointer movement
+     */
+    Track(Track&& track);
+
     struct Impl;
-    const std::unique_ptr<Impl> impl;
+    std::unique_ptr<Impl> impl;
 };
 
 #endif

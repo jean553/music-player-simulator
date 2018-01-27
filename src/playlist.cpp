@@ -80,7 +80,7 @@ void removeTrack(
 /**
  *
  */
-void playTrack(
+Track loadTrack(
     const std::vector<std::string>& playlist,
     const std::string& filename
 ) {
@@ -91,18 +91,14 @@ void playTrack(
         filename
     );
 
-    /* TODO: there are multiple reasons to exit
-       the function before the end; check if using
-       exceptions here is better */
-
     if (index == playlist.cend()) {
-        return;
+        throw std::invalid_argument("Track not found in playlist.");
     }
 
     std::ifstream file(filename);
 
     if (not file.is_open()) {
-        return;
+        throw std::invalid_argument("Cannot open the file.");
     }
 
     std::string title;
@@ -126,6 +122,8 @@ void playTrack(
         title,
         codec
     );
+
+    return std::move(track);
 
     /* TODO: start a thread with the playing track
        and output data to the user */

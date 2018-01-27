@@ -26,4 +26,10 @@ Track::Track(
 /**
  *
  */
+Track::Track(Track&& track) : impl(std::move(track.impl)) {
+}
+
+/**
+ *
+ */
 Track::~Track() = default;

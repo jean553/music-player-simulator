@@ -7,6 +7,8 @@
 #ifndef PLAYLIST_H_
 #define PLAYLIST_H_
 
+#include "track.hpp"
+
 #include <vector>
 #include <string>
 
@@ -43,12 +45,16 @@ void removeTrack(
 );
 
 /**
- * @brief loads the given file and plays sound into dedicated thread
+ * @brief loads the track from the given file
  *
  * @param playlist the playlist to use to find tracks
  * @param filename the file name of the track to read (stored in the playlist)
+ *
+ * @throws std::invalid_argument the given track
+ * does not exist into the playlist or
+ * the given file cannot be opened
  */
-void playTrack(
+Track loadTrack(
     const std::vector<std::string>& playlist,
     const std::string& filename
 );
