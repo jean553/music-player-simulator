@@ -10,6 +10,22 @@ cmake ..
 make
 ```
 
+## Unit tests
+
+### Compile object libraries
+
+```sh
+mkdir libs
+g++ -c -I includes src/playlist.cpp -o libs/playlist.o
+```
+
+### Compile and run tests
+
+```sh
+g++ -I includes tests/unit_tests.cpp -o bin/unit_tests libs/*
+./bin/unit_tests
+```
+
 ## Generate documentation
 
 ```sh

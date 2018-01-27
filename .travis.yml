@@ -20,3 +20,8 @@ script:
     # be required on other systems
     - cmake -D CMAKE_CXX_COMPILER=g++-6 ..
     - make
+
+    - cd ../ && mkdir libs/
+    - g++-6 -c -I includes src/playlist.cpp -o libs/playlist.o
+    - g++-6 -I includes tests/unit_tests.cpp -o bin/unit_tests libs/*
+    - ./bin/unit_tests
