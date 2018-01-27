@@ -9,5 +9,10 @@ addons:
     packages:
     - g++-6
 
+before_script:
+    - sudo apt-get install cmake -y
+
 script: 
-    - g++-6 -std=c++14 src/main.cpp -o output
+    - mkdir build && cd build/
+    - cmake -D CMAKE_CXX_COMPILER=g++-6 ..
+    - make -j
