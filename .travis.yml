@@ -14,5 +14,9 @@ before_script:
 
 script: 
     - mkdir build && cd build/
+    # force the compiler version on Ubuntu Trusty,
+    # Travis-CI newest OS is Trusty;
+    # forcing the compiler binary might not
+    # be required on other systems
     - cmake -D CMAKE_CXX_COMPILER=g++-6 ..
-    - make -j
+    - make
