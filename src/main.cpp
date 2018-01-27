@@ -74,6 +74,13 @@ int main() {
         if (command == "add_track") {
             playlist.push_back(option);
         }
+        else if (command == "play_track") {
+
+            playTrack(
+                playlist,
+                option
+            );
+        }
         else if (command == "remove_track") {
 
             removeTrack(

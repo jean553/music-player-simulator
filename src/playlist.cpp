@@ -74,3 +74,13 @@ void removeTrack(
 
     playlist.erase(index);
 }
+
+/**
+ *
+ */
+void playTrack(
+    const std::vector<std::string>& playlist,
+    const std::string& track
+) {
+    /* TODO: to define */
+}
