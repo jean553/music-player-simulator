@@ -17,6 +17,7 @@ make
 ```sh
 mkdir libs
 g++ -c -I includes src/playlist.cpp -o libs/playlist.o
+g++ -c -I includes src/track.cpp -o libs/track.o
 ```
 
 ### Compile and run tests
