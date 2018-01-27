@@ -9,6 +9,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <algorithm>
+#include <fstream>
 
 /**
  *
@@ -94,5 +95,29 @@ void playTrack(
         return;
     }
 
-    Track track(filename);
+    std::ifstream file(filename);
+
+    /* FIXME: check what to do in case of error when opening the file */
+
+    std::string title;
+    std::string codec;
+
+    getline(
+        file,
+        title,
+        '\n'
+    );
+
+    getline(
+        file,
+        codec,
+        '\n'
+    );
+
+    /* FIXME: read duration and content */
+
+    Track track(
+        title,
+        codec
+    );
 }

@@ -6,7 +6,6 @@
 #include "track.hpp"
 
 #include <string>
-#include <fstream>
 
 struct Track::Impl {
 
@@ -18,25 +17,10 @@ struct Track::Impl {
 /**
  *
  */
-Track::Track(const std::string& filename) : impl(std::make_unique<Impl>()) {
-
-    std::ifstream file(filename);
-
-    /* FIXME: check what to do in case of error when opening the file */
-
-    getline(
-        file,
-        impl->title,
-        '\n'
-    );
-
-    getline(
-        file,
-        impl->codec,
-        '\n'
-    );
-
-    /* FIXME: read duration and content */
+Track::Track(
+    const std::string title,
+    const std::string codec
+) : impl(std::make_unique<Impl>()) {
 }
 
 /**
