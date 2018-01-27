@@ -40,8 +40,8 @@ int main() {
         }
 
         constexpr std::size_t FIRST_CHARACTER_INDEX {0};
-        constexpr char KEYWORDS_SEPARATOR {' '};
-        const auto separatorIndex = input.find(KEYWORDS_SEPARATOR);
+        constexpr char SEPARATOR {' '};
+        const auto separatorIndex = input.find(SEPARATOR);
         std::string command = input.substr(
             FIRST_CHARACTER_INDEX,
             separatorIndex
@@ -60,19 +60,20 @@ int main() {
             continue;
         }
 
-        std::string option;
-
-        try {
-            /* FIXME: considere the first space as a character */
-            option = input.substr(separatorIndex);
+        if (separatorIndex == std::string::npos) {
+            displayInputError();
+            continue;
         }
-        catch (std::out_of_range&) {
+
+        /* add one to do not include the prefixed space into the file name */
+        std::string option = input.substr(separatorIndex + 1);
+
+        if (option.find_first_not_of(SEPARATOR) == std::string::npos) {
             displayInputError();
             continue;
         }
 
         if (command == "add_track") {
-
             playlist.push_back(option);
             continue;
         }
