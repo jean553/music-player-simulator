@@ -11,6 +11,16 @@
 
 struct Track {
 
+    /**
+     * @brief constructs a track from the given file
+     */
+    Track(const std::string& filename);
+
+    /**
+     * @brief default destructor required for separated implementation
+     */
+    ~Track();
+
     struct Impl;
     const std::unique_ptr<Impl> impl;
 };
