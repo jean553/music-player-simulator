@@ -25,8 +25,15 @@ int main() {
 
     std::vector<std::string> playlist;
     std::string input;
-    std::thread player;
     std::shared_ptr<Track> track {nullptr};
+
+    /* FIXME: wrap the thread into an unique pointer
+       in order to be able to access it through
+       a larger scope and also being able to know
+       if it has been started or not (preventing runtime error
+       when calling detach() at the end of the program);
+       check if using std::task API is better */
+    std::unique_ptr<std::thread> player {nullptr};
 
     while (true) {
 
@@ -116,9 +123,11 @@ int main() {
                 continue;
             }
 
-            player = std::thread(
-                playTrack,
-                track
+            player = std::make_unique<std::thread>(
+                std::thread(
+                    playTrack,
+                    track
+                )
             );
 
             std::cout << "Playing " + track->getTitle() << std::endl;
@@ -134,10 +143,9 @@ int main() {
         }
     }
 
-    /* TODO: safe solution, but it should not wait
-       until the end of the thread before leaving;
-       throws exception if the thread has not been started */
-    player.join();
+    if (player != nullptr) {
+        player->detach();
+    }
 
     return EXIT_SUCCESS;
 }
