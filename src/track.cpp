@@ -52,3 +52,11 @@ const std::string& Track::getTitle() const & noexcept {
     
     return impl->title;
 }
+
+/**
+ *
+ */
+void Track::incrementPosition() const & noexcept {
+
+    impl->position += 1;
+}

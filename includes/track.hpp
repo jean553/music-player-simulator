@@ -57,6 +57,11 @@ struct Track {
      */
     const std::string& getTitle() const & noexcept;
 
+    /**
+     * @brief increments the track position when playing
+     */
+    void incrementPosition() const & noexcept;
+
     struct Impl;
     std::unique_ptr<Impl> impl;
 };
