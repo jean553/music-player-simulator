@@ -13,10 +13,9 @@ struct Track::Impl {
     std::string codec;
 
     unsigned int duration;
-    unsigned int position {0};
+    unsigned int position;
 
-    bool playing {true};
-    bool stopped {false};
+    bool playing;
 };
 
 /**
@@ -32,6 +31,8 @@ Track::Track(
     impl->title = title;
     impl->codec = codec;
     impl->duration = duration;
+    impl->position = 0;
+    impl->playing = true;
 }
 
 /**
@@ -85,6 +86,14 @@ void Track::pause() const & noexcept {
 void Track::resume() const & noexcept {
 
     impl->playing = true;
+}
+
+/**
+ *
+ */
+void Track::restart() const & noexcept {
+
+    impl->position = 0;
 }
 
 /**

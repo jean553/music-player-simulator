@@ -80,6 +80,12 @@ struct Track {
     void resume() const & noexcept;
 
     /**
+     * @brief restarts the current track, used for repetition
+     * and at the end of playing
+     */
+    void restart() const & noexcept;
+
+    /**
      * @brief indicates if the track is playing
      *
      * @return const bool&
