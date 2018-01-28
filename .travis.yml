@@ -22,7 +22,7 @@ script:
     - make
 
     - cd ../ && mkdir libs/
-    - g++-6 -c -I includes src/playlist.cpp -o libs/playlist.o
+    - g++-6 -c -I includes src/playlist.cpp -o libs/playlist.o -lpthread
     - g++-6 -c -I includes src/track.cpp -o libs/track.o
-    - g++-6 -I includes tests/unit_tests.cpp -o bin/unit_tests libs/*
+    - g++-6 -I includes tests/unit_tests.cpp -o bin/unit_tests libs/* -lpthread
     - ./bin/unit_tests
