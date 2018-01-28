@@ -49,8 +49,6 @@ void removeTrack(
  * @brief loads the track from the given file
  *
  * @param filename the file name of the track to read (stored in the playlist)
- *
- * @throws std::invalid_argument the given file cannot be opened
  */
 Track openTrack(const std::string& filename);
 
@@ -101,8 +99,6 @@ void terminateTrack(
  * @param track shared pointer reference where to load the track
  * @param player unique pointer reference to the player to use
  * @param filename the name of the file to load
- *
- * @throws std::invalid_argument the given file cannot be opened
  */
 void loadTrack(
     std::shared_ptr<Track>& track,
