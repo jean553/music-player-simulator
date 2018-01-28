@@ -94,30 +94,59 @@ int main() {
             continue;
         }
 
+        /* FIXME: identical code is used for both the next
+           and previous commands, this code should be refactored */
+
         if (
             track != nullptr and
-            command == "next"
+            command == "next" and
+            playedIndex != playlist.size() - 1
         ) {
             terminateTrack(
                 track,
                 player
             );
 
-            /* TODO: to define */
+            try {
+                loadTrack(
+                    track,
+                    player,
+                    playlist[playedIndex + 1]
+                );
+            }
+            catch (std::invalid_argument& exception) {
+                std::cout << exception.what() << std::endl;
+                continue;
+            }
+
+            playedIndex += 1;
 
             continue;
         }
 
         if (
             track != nullptr and
-            command == "previous"
+            command == "previous" and
+            playedIndex != 0
         ) {
             terminateTrack(
                 track,
                 player
             );
 
-            /* TODO: to define */
+            try {
+                loadTrack(
+                    track,
+                    player,
+                    playlist[playedIndex - 1]
+                );
+            }
+            catch (std::invalid_argument& exception) {
+                std::cout << exception.what() << std::endl;
+                continue;
+            }
+
+            playedIndex -= 1;
 
             continue;
         }
