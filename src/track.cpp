@@ -16,6 +16,7 @@ struct Track::Impl {
     unsigned int position;
 
     bool playing;
+    bool repeat;
 };
 
 /**
@@ -33,6 +34,7 @@ Track::Track(
     impl->duration = duration;
     impl->position = 0;
     impl->playing = true;
+    impl->repeat = false;
 }
 
 /**
@@ -110,4 +112,20 @@ void Track::incrementPosition() const & noexcept {
 const bool& Track::isPlaying() const & noexcept {
 
     return impl->playing;
+}
+
+/**
+ *
+ */
+const bool& Track::isRepeated() const & noexcept {
+
+    return impl->repeat;
+}
+
+/**
+ *
+ */
+void Track::repeat() const & noexcept {
+
+    impl->repeat = true;
 }

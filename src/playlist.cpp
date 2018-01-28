@@ -108,6 +108,10 @@ void playTrack(
 
         if (track->getDuration() == track->getPosition()) {
             track->restart();
+
+            if (not track->isRepeated()) {
+                track->pause();
+            }
         }
     }
 }
