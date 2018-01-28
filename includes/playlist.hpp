@@ -59,4 +59,9 @@ Track loadTrack(
     const std::string& filename
 );
 
+/**
+ * @brief simulate a track playing procedure
+ */
+void playTrack(Track track);
+
 #endif
