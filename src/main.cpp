@@ -93,13 +93,6 @@ int main() {
 
         if (command == "random") {
 
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
-            }
-
             playedIndex = rand() % playlist.size();
 
             loadTrack(
@@ -119,13 +112,6 @@ int main() {
             playedIndex != playlist.size() - 1
         ) {
 
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
-            }
-
             playedIndex += 1;
 
             loadTrack(
@@ -141,13 +127,6 @@ int main() {
             command == "previous" and
             playedIndex != 0
         ) {
-
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
-            }
 
             playedIndex -= 1;
 
@@ -187,13 +166,6 @@ int main() {
             if (index == playlist.cend()) {
                 std::cout << "Sound not in list." << std::endl;
                 continue;
-            }
-
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
             }
 
             playedIndex = std::distance(
