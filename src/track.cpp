@@ -14,6 +14,8 @@ struct Track::Impl {
 
     unsigned int duration;
     unsigned int position {0};
+
+    bool playing {true};
 };
 
 /**
@@ -83,6 +85,14 @@ const unsigned int& Track::getDuration() const & noexcept {
 const unsigned int& Track::getPosition() const & noexcept {
 
     return impl->position;
+}
+
+/**
+ *
+ */
+void Track::pause() const & noexcept {
+
+    impl->playing = false;
 }
 
 /**

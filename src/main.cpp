@@ -69,6 +69,14 @@ int main() {
             continue;
         }
 
+        if (
+            track != nullptr and
+            command == "pause"
+        ) {
+            track->pause();
+            continue;
+        }
+
         if (separatorIndex == std::string::npos) {
             displayInputError();
             continue;

@@ -85,6 +85,11 @@ struct Track {
      */
     void incrementPosition() const & noexcept;
 
+    /**
+     * @brief pauses the playing track, set playing boolean to false
+     */
+    void pause() const & noexcept;
+
     struct Impl;
     std::unique_ptr<Impl> impl;
 };
