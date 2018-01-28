@@ -10,6 +10,8 @@
 #include <unordered_set>
 #include <algorithm>
 #include <fstream>
+#include <thread>
+#include <chrono>
 
 /**
  *
@@ -131,5 +133,14 @@ Track loadTrack(
  */
 void playTrack(Track track) {
 
-    /* TODO: to define */
+    for (
+        auto index = 0u;
+        index < 10;
+        index += 1
+    ) {
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        track.incrementPosition();
+    }
 }
