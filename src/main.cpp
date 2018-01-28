@@ -73,28 +73,22 @@ int main() {
             continue;
         }
 
-        if (
-            track != nullptr and
-            command == "show_track"
-        ) {
-            showTrack(track);
-            continue;
-        }
+        if (track != nullptr) {
 
-        if (
-            track != nullptr and
-            command == "pause"
-        ) {
-            track->pause();
-            continue;
-        }
+            if (command == "show_track") {
+                showTrack(track);
+                continue;
+            }
 
-        if (
-            track != nullptr and
-            command == "resume"
-        ) {
-            track->resume();
-            continue;
+            if (command == "pause") {
+                track->pause();
+                continue;
+            }
+
+            if (command == "resume") {
+                track->resume();
+                continue;
+            }
         }
 
         if (command == "random") {
