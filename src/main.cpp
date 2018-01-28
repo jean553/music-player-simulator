@@ -61,6 +61,14 @@ int main() {
             continue;
         }
 
+        if (
+            track != nullptr and
+            command == "show_track"
+        ) {
+            showTrack(track);
+            continue;
+        }
+
         if (separatorIndex == std::string::npos) {
             displayInputError();
             continue;
