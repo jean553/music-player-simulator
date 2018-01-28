@@ -11,7 +11,9 @@ struct Track::Impl {
 
     std::string title;
     std::string codec;
-    unsigned int duration;
+
+    unsigned int duration {0};
+    unsigned int position {0};
 };
 
 /**
@@ -51,4 +53,12 @@ Track::~Track() = default;
 const std::string& Track::getTitle() const & noexcept {
     
     return impl->title;
+}
+
+/**
+ *
+ */
+void Track::incrementPosition() const & noexcept {
+
+    impl->position += 1;
 }
