@@ -141,6 +141,15 @@ void playTrack(const std::shared_ptr<Track> track) {
 
     while (duration != track->getPosition())
     {
+        if (not track->isPlaying()) {
+
+            /* FIXME: very bad design, cause CPU to run at maximum,
+               it would be preferable to combine
+               a condition_variable with a mutex */
+
+            continue;
+        }
+
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         track->incrementPosition();
