@@ -46,13 +46,6 @@ void removeTrack(
 );
 
 /**
- * @brief loads the track from the given file
- *
- * @param filename the file name of the track to read (stored in the playlist)
- */
-Track openTrack(const std::string& filename);
-
-/**
  * @brief simulates a track playing procedure;
  * runs a loop that increments the track position every second
  * until the position is equal to the track duration
@@ -74,24 +67,6 @@ void playTrack(const std::shared_ptr<Track> track);
  * WARNING: the track shared pointer must not be null
  */
 void showTrack(const std::shared_ptr<Track>& track);
-
-/**
- * @brief terminates completely the playing track;
- * force the thread to stop, waits for its complete stop;
- * reset the track and player pointers
- *
- * @param track shared pointer reference to the track to stop
- * @param player unique pointer reference to the player to reset
- *
- * the passed parameters references are not constant
- * as the reset() method is applied on each of them
- *
- * WARNING: the passed pointers must not be null
- */
-void terminateTrack(
-    std::shared_ptr<Track>& track,
-    std::unique_ptr<std::thread>& player
-);
 
 /**
  * @brief loads the sound according to the file name

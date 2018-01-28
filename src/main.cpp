@@ -73,38 +73,25 @@ int main() {
             continue;
         }
 
-        if (
-            track != nullptr and
-            command == "show_track"
-        ) {
-            showTrack(track);
-            continue;
-        }
+        if (track != nullptr) {
 
-        if (
-            track != nullptr and
-            command == "pause"
-        ) {
-            track->pause();
-            continue;
-        }
+            if (command == "show_track") {
+                showTrack(track);
+                continue;
+            }
 
-        if (
-            track != nullptr and
-            command == "resume"
-        ) {
-            track->resume();
-            continue;
+            if (command == "pause") {
+                track->pause();
+                continue;
+            }
+
+            if (command == "resume") {
+                track->resume();
+                continue;
+            }
         }
 
         if (command == "random") {
-
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
-            }
 
             playedIndex = rand() % playlist.size();
 
@@ -121,14 +108,9 @@ int main() {
            and previous commands, this code should be refactored */
 
         if (
-            track != nullptr and
             command == "next" and
             playedIndex != playlist.size() - 1
         ) {
-            terminateTrack(
-                track,
-                player
-            );
 
             playedIndex += 1;
 
@@ -142,14 +124,9 @@ int main() {
         }
 
         if (
-            track != nullptr and
             command == "previous" and
             playedIndex != 0
         ) {
-            terminateTrack(
-                track,
-                player
-            );
 
             playedIndex -= 1;
 
@@ -179,13 +156,6 @@ int main() {
             playlist.push_back(option);
         }
         else if (command == "play_track") {
-
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
-            }
 
             const auto index = std::find(
                 playlist.cbegin(),
