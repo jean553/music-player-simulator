@@ -85,15 +85,12 @@ Track openTrack(const std::string& filename) {
 
     std::ifstream file(filename);
 
-    if (not file.is_open()) {
-        throw std::invalid_argument("Cannot open the file.");
-    }
-
     std::string title;
     std::string codec;
     unsigned int duration;
 
-    /* FIXME: undefined behaviour if the file is not organized as expected */
+    /* FIXME: undefined behaviour if the file
+       is not organized as expected */
 
     getline(
         file,

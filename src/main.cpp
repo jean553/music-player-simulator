@@ -106,21 +106,13 @@ int main() {
                 );
             }
 
-            const auto randomIndex = rand() % playlist.size();
+            playedIndex = rand() % playlist.size();
 
-            try {
-                loadTrack(
-                    track,
-                    player,
-                    playlist[randomIndex]
-                );
-            }
-            catch (std::invalid_argument& exception) {
-                std::cout << exception.what() << std::endl;
-                continue;
-            }
-
-            playedIndex = randomIndex;
+            loadTrack(
+                track,
+                player,
+                playlist[playedIndex]
+            );
 
             continue;
         }
@@ -138,19 +130,13 @@ int main() {
                 player
             );
 
-            try {
-                loadTrack(
-                    track,
-                    player,
-                    playlist[playedIndex + 1]
-                );
-            }
-            catch (std::invalid_argument& exception) {
-                std::cout << exception.what() << std::endl;
-                continue;
-            }
-
             playedIndex += 1;
+
+            loadTrack(
+                track,
+                player,
+                playlist[playedIndex]
+            );
 
             continue;
         }
@@ -165,19 +151,13 @@ int main() {
                 player
             );
 
-            try {
-                loadTrack(
-                    track,
-                    player,
-                    playlist[playedIndex - 1]
-                );
-            }
-            catch (std::invalid_argument& exception) {
-                std::cout << exception.what() << std::endl;
-                continue;
-            }
-
             playedIndex -= 1;
+
+            loadTrack(
+                track,
+                player,
+                playlist[playedIndex]
+            );
 
             continue;
         }
@@ -218,21 +198,15 @@ int main() {
                 continue;
             }
 
-            try {
-                loadTrack(
-                    track,
-                    player,
-                    option
-                );
-            }
-            catch (std::invalid_argument& exception) {
-                std::cout << exception.what() << std::endl;
-                continue;
-            }
-
             playedIndex = std::distance(
                 playlist.cbegin(),
                 index
+            );
+
+            loadTrack(
+                track,
+                player,
+                option
             );
 
             std::cout << "Playing " + track->getTitle() << std::endl;
