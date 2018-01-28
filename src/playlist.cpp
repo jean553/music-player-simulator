@@ -124,13 +124,12 @@ Track loadTrack(
     );
 
     return std::move(track);
-
-    /* TODO: start a thread with the playing track
-       and output data to the user */
 }
 
 /**
  *
  */
 void playTrack(Track track) {
+
+    /* TODO: to define */
 }
