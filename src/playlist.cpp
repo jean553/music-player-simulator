@@ -90,19 +90,14 @@ void playTrack(
     std::unique_lock<std::mutex> lock(mutex);
     cv.wait(lock);
 
-    const auto duration = track->getDuration();
-
-    while (duration != track->getPosition())
+    while (track->getDuration() != track->getPosition())
     {
-        if (track->isStopped()) {
-            break;
-        }
-
         if (not track->isPlaying()) {
 
-            /* FIXME: very bad design, cause CPU to run at maximum,
-               it would be preferable to combine
-               a condition_variable with a mutex */
+            /* waits for the resume command */
+            cv.wait(lock);
+
+            track->resume();
 
             continue;
         }
@@ -134,8 +129,7 @@ void loadTrack(
 ) {
 
     if (track != nullptr) {
-        track->stop();
-        track.reset();
+        track->pause();
     }
 
     std::ifstream file(filename);
