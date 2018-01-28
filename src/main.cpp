@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <thread>
+#include <algorithm>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -26,6 +27,7 @@ int main() {
     std::vector<std::string> playlist;
     std::string input;
     std::shared_ptr<Track> track {nullptr};
+    unsigned int playedIndex {0};
 
     /* FIXME: wrap the thread into an unique pointer
        in order to be able to access it through
@@ -145,6 +147,17 @@ int main() {
                 );
             }
 
+            const auto index = std::find(
+                playlist.cbegin(),
+                playlist.cend(),
+                option
+            );
+
+            if (index == playlist.cend()) {
+                std::cout << "Sound not in list." << std::endl;
+                continue;
+            }
+
             try {
                 track = std::make_shared<Track>(
                     loadTrack(
@@ -163,6 +176,11 @@ int main() {
                     playTrack,
                     track
                 )
+            );
+
+            playedIndex = std::distance(
+                playlist.cbegin(),
+                index
             );
 
             std::cout << "Playing " + track->getTitle() << std::endl;

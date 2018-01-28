@@ -86,16 +86,6 @@ Track loadTrack(
     const std::string& filename
 ) {
 
-    const auto index = std::find(
-        playlist.cbegin(),
-        playlist.cend(),
-        filename
-    );
-
-    if (index == playlist.cend()) {
-        throw std::invalid_argument("Track not found in playlist.");
-    }
-
     std::ifstream file(filename);
 
     if (not file.is_open()) {
