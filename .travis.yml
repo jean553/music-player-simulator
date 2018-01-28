@@ -23,5 +23,6 @@ script:
 
     - cd ../ && mkdir libs/
     - g++-6 -c -I includes src/playlist.cpp -o libs/playlist.o
+    - g++-6 -c -I includes src/track.cpp -o libs/track.o
     - g++-6 -I includes tests/unit_tests.cpp -o bin/unit_tests libs/*
     - ./bin/unit_tests
