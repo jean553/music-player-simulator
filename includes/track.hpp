@@ -58,6 +58,13 @@ struct Track {
     const std::string& getTitle() const & noexcept;
 
     /**
+     * @brief getter of the current track position
+     *
+     * @return const unsigned int&
+     */
+    const unsigned int& getPosition() const & noexcept;
+
+    /**
      * @brief increments the track position when playing
      */
     void incrementPosition() const & noexcept;
