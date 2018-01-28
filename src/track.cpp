@@ -33,3 +33,11 @@ Track::Track(Track&& track) : impl(std::move(track.impl)) {
  *
  */
 Track::~Track() = default;
+
+/**
+ *
+ */
+const std::string& Track::getTitle() const & noexcept {
+    
+    return impl->title;
+}

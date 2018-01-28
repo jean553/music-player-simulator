@@ -41,6 +41,13 @@ struct Track {
      */
     Track(Track&& track);
 
+    /**
+     * @brief getter of the track title
+     *
+     * @return const std::string&
+     */
+    const std::string& getTitle() const & noexcept;
+
     struct Impl;
     std::unique_ptr<Impl> impl;
 };

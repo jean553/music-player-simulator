@@ -84,7 +84,12 @@ int main() {
                     option
                 );
 
-                player = std::thread(playTrack, track);
+                player = std::thread(
+                    playTrack,
+                    track
+                );
+
+                std::cout << "Playing " + track.getTitle() << std::endl;
             }
             catch (std::invalid_argument& exception) {
                 std::cout << exception.what() << std::endl;
