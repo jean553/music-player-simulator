@@ -9,6 +9,7 @@
 #include <vector>
 #include <thread>
 #include <algorithm>
+#include <cstdlib>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -23,6 +24,8 @@ void displayInputError() {
 int main() {
 
     std::cout << "Imaginary player" << std::endl;
+
+    srand(time(NULL));
 
     std::vector<std::string> playlist;
     std::string input;
@@ -91,6 +94,34 @@ int main() {
             command == "resume"
         ) {
             track->resume();
+            continue;
+        }
+
+        if (command == "random") {
+
+            if (track != nullptr) {
+                terminateTrack(
+                    track,
+                    player
+                );
+            }
+
+            const auto randomIndex = rand() % playlist.size();
+
+            try {
+                loadTrack(
+                    track,
+                    player,
+                    playlist[randomIndex]
+                );
+            }
+            catch (std::invalid_argument& exception) {
+                std::cout << exception.what() << std::endl;
+                continue;
+            }
+
+            playedIndex = randomIndex;
+
             continue;
         }
 
