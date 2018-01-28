@@ -90,14 +90,8 @@ void playTrack(
     std::unique_lock<std::mutex> lock(mutex);
     cv.wait(lock);
 
-    const auto duration = track->getDuration();
-
-    while (duration != track->getPosition())
+    while (track->getDuration() != track->getPosition())
     {
-        if (track->isStopped()) {
-            break;
-        }
-
         if (not track->isPlaying()) {
 
             /* waits for the resume command */
@@ -135,8 +129,7 @@ void loadTrack(
 ) {
 
     if (track != nullptr) {
-        track->stop();
-        track.reset();
+        track->pause();
     }
 
     std::ifstream file(filename);
