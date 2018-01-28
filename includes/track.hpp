@@ -90,6 +90,18 @@ struct Track {
      */
     void pause() const & noexcept;
 
+    /**
+     * @brief resumes the current paused track, set playing boolean to true
+     */
+    void resume() const & noexcept;
+
+    /**
+     * @brief indicates if the track is playing
+     *
+     * @return const bool&
+     */
+    const bool& isPlaying() const & noexcept;
+
     struct Impl;
     std::unique_ptr<Impl> impl;
 };

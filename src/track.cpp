@@ -98,7 +98,23 @@ void Track::pause() const & noexcept {
 /**
  *
  */
+void Track::resume() const & noexcept {
+
+    impl->playing = true;
+}
+
+/**
+ *
+ */
 void Track::incrementPosition() const & noexcept {
 
     impl->position += 1;
+}
+
+/**
+ *
+ */
+const bool& Track::isPlaying() const & noexcept {
+
+    return impl->playing;
 }
