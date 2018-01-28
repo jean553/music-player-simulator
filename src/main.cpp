@@ -115,14 +115,16 @@ int main() {
            and previous commands, this code should be refactored */
 
         if (
-            track != nullptr and
             command == "next" and
             playedIndex != playlist.size() - 1
         ) {
-            terminateTrack(
-                track,
-                player
-            );
+
+            if (track != nullptr) {
+                terminateTrack(
+                    track,
+                    player
+                );
+            }
 
             playedIndex += 1;
 
@@ -136,14 +138,16 @@ int main() {
         }
 
         if (
-            track != nullptr and
             command == "previous" and
             playedIndex != 0
         ) {
-            terminateTrack(
-                track,
-                player
-            );
+
+            if (track != nullptr) {
+                terminateTrack(
+                    track,
+                    player
+                );
+            }
 
             playedIndex -= 1;
 
@@ -174,13 +178,6 @@ int main() {
         }
         else if (command == "play_track") {
 
-            if (track != nullptr) {
-                terminateTrack(
-                    track,
-                    player
-                );
-            }
-
             const auto index = std::find(
                 playlist.cbegin(),
                 playlist.cend(),
@@ -190,6 +187,13 @@ int main() {
             if (index == playlist.cend()) {
                 std::cout << "Sound not in list." << std::endl;
                 continue;
+            }
+
+            if (track != nullptr) {
+                terminateTrack(
+                    track,
+                    player
+                );
             }
 
             playedIndex = std::distance(
