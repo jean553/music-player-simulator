@@ -61,6 +61,8 @@ Track loadTrack(
 
 /**
  * @brief simulate a track playing procedure
+ *
+ * @param track the track to play
  */
 void playTrack(Track track);
 
