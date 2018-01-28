@@ -100,9 +100,10 @@ void playTrack(
 
         if (not track->isPlaying()) {
 
-            /* FIXME: very bad design, cause CPU to run at maximum,
-               it would be preferable to combine
-               a condition_variable with a mutex */
+            /* waits for the resume command */
+            cv.wait(lock);
+
+            track->resume();
 
             continue;
         }

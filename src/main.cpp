@@ -89,7 +89,7 @@ int main() {
             }
 
             if (command == "resume") {
-                track->resume();
+                cv.notify_one();
                 continue;
             }
         }
