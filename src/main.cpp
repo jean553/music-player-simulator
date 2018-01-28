@@ -94,18 +94,18 @@ int main() {
                         option
                     )
                 );
-
-                player = std::thread(
-                    playTrack,
-                    track
-                );
-
-                std::cout << "Playing " + track->getTitle() << std::endl;
             }
             catch (std::invalid_argument& exception) {
                 std::cout << exception.what() << std::endl;
                 continue;
             }
+
+            player = std::thread(
+                playTrack,
+                track
+            );
+
+            std::cout << "Playing " + track->getTitle() << std::endl;
         }
         else if (command == "remove_track") {
 
