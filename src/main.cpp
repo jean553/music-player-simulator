@@ -159,10 +159,12 @@ int main() {
             }
 
             try {
-                track = std::make_shared<Track>(
-                    openTrack(
-                        playlist,
-                        option
+                track = std::make_shared<Track>(openTrack(option));
+
+                player = std::make_unique<std::thread>(
+                    std::thread(
+                        playTrack,
+                        track
                     )
                 );
             }
@@ -170,13 +172,6 @@ int main() {
                 std::cout << exception.what() << std::endl;
                 continue;
             }
-
-            player = std::make_unique<std::thread>(
-                std::thread(
-                    playTrack,
-                    track
-                )
-            );
 
             playedIndex = std::distance(
                 playlist.cbegin(),

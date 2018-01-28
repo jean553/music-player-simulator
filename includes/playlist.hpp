@@ -48,17 +48,13 @@ void removeTrack(
 /**
  * @brief loads the track from the given file
  *
- * @param playlist the playlist to use to find tracks
  * @param filename the file name of the track to read (stored in the playlist)
  *
  * @throws std::invalid_argument the given track
  * does not exist into the playlist or
  * the given file cannot be opened
  */
-Track openTrack(
-    const std::vector<std::string>& playlist,
-    const std::string& filename
-);
+Track openTrack(const std::string& filename);
 
 /**
  * @brief simulates a track playing procedure;

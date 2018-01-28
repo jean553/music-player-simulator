@@ -81,10 +81,7 @@ void removeTrack(
 /**
  *
  */
-Track openTrack(
-    const std::vector<std::string>& playlist,
-    const std::string& filename
-) {
+Track openTrack(const std::string& filename) {
 
     std::ifstream file(filename);
 
