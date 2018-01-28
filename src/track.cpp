@@ -37,23 +37,6 @@ Track::Track(
 /**
  *
  */
-Track::Track(const Track& track) : impl(std::make_unique<Impl>()) {
-
-    const auto& source = track.impl;
-    impl->title = source->title;
-    impl->codec = source->codec;
-    impl->duration = source->duration;
-}
-
-/**
- *
- */
-Track::Track(Track&& track) : impl(std::move(track.impl)) {
-}
-
-/**
- *
- */
 Track::~Track() = default;
 
 /**

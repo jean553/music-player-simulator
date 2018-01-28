@@ -81,43 +81,6 @@ void removeTrack(
 /**
  *
  */
-Track openTrack(const std::string& filename) {
-
-    std::ifstream file(filename);
-
-    std::string title;
-    std::string codec;
-    unsigned int duration;
-
-    /* FIXME: undefined behaviour if the file
-       is not organized as expected */
-
-    getline(
-        file,
-        title,
-        '\n'
-    );
-
-    getline(
-        file,
-        codec,
-        '\n'
-    );
-
-    file >> duration;
-
-    Track track(
-        title,
-        codec,
-        duration
-    );
-
-    return std::move(track);
-}
-
-/**
- *
- */
 void playTrack(const std::shared_ptr<Track> track) {
 
     const auto duration = track->getDuration();
@@ -162,6 +125,7 @@ void loadTrack(
     std::unique_ptr<std::thread>& player,
     const std::string& filename
 ) {
+
     if (track != nullptr) {
         track->stop();
         player->join();
@@ -170,7 +134,34 @@ void loadTrack(
         player.reset();
     }
 
-    track = std::make_shared<Track>(openTrack(filename));
+    std::ifstream file(filename);
+
+    std::string title;
+    std::string codec;
+    unsigned int duration;
+
+    /* FIXME: undefined behaviour if the file
+       is not organized as expected */
+
+    getline(
+        file,
+        title,
+        '\n'
+    );
+
+    getline(
+        file,
+        codec,
+        '\n'
+    );
+
+    file >> duration;
+
+    track = std::make_shared<Track>(
+        title,
+        codec,
+        duration
+    );
 
     player = std::make_unique<std::thread>(
         std::thread(

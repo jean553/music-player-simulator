@@ -46,13 +46,6 @@ void removeTrack(
 );
 
 /**
- * @brief loads the track from the given file
- *
- * @param filename the file name of the track to read (stored in the playlist)
- */
-Track openTrack(const std::string& filename);
-
-/**
  * @brief simulates a track playing procedure;
  * runs a loop that increments the track position every second
  * until the position is equal to the track duration
