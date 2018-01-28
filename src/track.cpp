@@ -11,7 +11,9 @@ struct Track::Impl {
 
     std::string title;
     std::string codec;
-    unsigned int duration;
+
+    unsigned int duration {0};
+    unsigned int position {0};
 };
 
 /**
