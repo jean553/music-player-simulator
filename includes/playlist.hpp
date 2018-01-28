@@ -60,7 +60,9 @@ Track loadTrack(
 );
 
 /**
- * @brief simulate a track playing procedure
+ * @brief simulates a track playing procedure;
+ * runs a loop that increments the track position every second
+ * until the position is equal to the track duration
  *
  * @param track shared pointer to the track to play
  *

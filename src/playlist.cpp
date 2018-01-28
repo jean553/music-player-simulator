@@ -133,12 +133,10 @@ Track loadTrack(
  */
 void playTrack(const std::shared_ptr<Track> track) {
 
-    for (
-        auto index = 0u;
-        index < 10;
-        index += 1
-    ) {
+    const auto duration = track->getDuration();
 
+    while (duration != track->getPosition())
+    {
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         track->incrementPosition();
