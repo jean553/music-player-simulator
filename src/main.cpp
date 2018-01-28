@@ -159,13 +159,10 @@ int main() {
             }
 
             try {
-                track = std::make_shared<Track>(openTrack(option));
-
-                player = std::make_unique<std::thread>(
-                    std::thread(
-                        playTrack,
-                        track
-                    )
+                loadTrack(
+                    track,
+                    player,
+                    option
                 );
             }
             catch (std::invalid_argument& exception) {

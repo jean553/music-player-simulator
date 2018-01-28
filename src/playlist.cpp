@@ -170,3 +170,21 @@ void terminateTrack(
     track.reset();
     player.reset();
 }
+
+/**
+ *
+ */
+void loadTrack(
+    std::shared_ptr<Track>& track,
+    std::unique_ptr<std::thread>& player,
+    const std::string& filename
+) {
+    track = std::make_shared<Track>(openTrack(filename));
+
+    player = std::make_unique<std::thread>(
+        std::thread(
+            playTrack,
+            track
+        )
+    );
+} 
