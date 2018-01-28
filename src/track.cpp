@@ -58,6 +58,14 @@ const std::string& Track::getTitle() const & noexcept {
 /**
  *
  */
+const unsigned int& Track::getPosition() const & noexcept {
+
+    return impl->position;
+}
+
+/**
+ *
+ */
 void Track::incrementPosition() const & noexcept {
 
     impl->position += 1;

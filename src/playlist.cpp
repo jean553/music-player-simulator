@@ -153,4 +153,5 @@ void showTrack(const std::shared_ptr<Track>& track) {
     /* TODO: add more information here */
 
     std::cout << "Title: " << track->getTitle() << std::endl;
+    std::cout << "Current position: " << track->getPosition() << std::endl;
 }
