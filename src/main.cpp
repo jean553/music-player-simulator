@@ -108,7 +108,8 @@ int main() {
     }
 
     /* TODO: safe solution, but it should not wait
-       until the end of the thread before leaving */
+       until the end of the thread before leaving;
+       throws exception if the thread has not been started */
     player.join();
 
     return EXIT_SUCCESS;
