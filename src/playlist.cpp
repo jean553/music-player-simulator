@@ -105,6 +105,9 @@ Track loadTrack(
 
     std::string title;
     std::string codec;
+    unsigned int duration;
+
+    /* FIXME: undefined behaviour if the file is not organized as expected */
 
     getline(
         file,
@@ -118,11 +121,12 @@ Track loadTrack(
         '\n'
     );
 
-    /* FIXME: read duration and content */
+    file >> duration;
 
     Track track(
         title,
-        codec
+        codec,
+        duration
     );
 
     return std::move(track);
@@ -133,12 +137,10 @@ Track loadTrack(
  */
 void playTrack(const std::shared_ptr<Track> track) {
 
-    for (
-        auto index = 0u;
-        index < 10;
-        index += 1
-    ) {
+    const auto duration = track->getDuration();
 
+    while (duration != track->getPosition())
+    {
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         track->incrementPosition();
@@ -150,9 +152,8 @@ void playTrack(const std::shared_ptr<Track> track) {
  */
 void showTrack(const std::shared_ptr<Track>& track) {
 
-    /* TODO: add duration here */
-
     std::cout << "Title: " << track->getTitle() << std::endl;
     std::cout << "Codec: " << track->getCodec() << std::endl;
+    std::cout << "Duration: " << track->getDuration() << std::endl;
     std::cout << "Current position: " << track->getPosition() << std::endl;
 }

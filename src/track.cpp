@@ -12,7 +12,7 @@ struct Track::Impl {
     std::string title;
     std::string codec;
 
-    unsigned int duration {0};
+    unsigned int duration;
     unsigned int position {0};
 };
 
@@ -21,10 +21,14 @@ struct Track::Impl {
  */
 Track::Track(
     const std::string title,
-    const std::string codec
-) : impl(std::make_unique<Impl>()) {
+    const std::string codec,
+    const unsigned int duration
+) :
+    impl(std::make_unique<Impl>()) {
+
     impl->title = title;
     impl->codec = codec;
+    impl->duration = duration;
 }
 
 /**
@@ -32,8 +36,10 @@ Track::Track(
  */
 Track::Track(const Track& track) : impl(std::make_unique<Impl>()) {
 
-    impl->title = track.impl->title;
-    impl->codec = track.impl->codec;
+    const auto& source = track.impl;
+    impl->title = source->title;
+    impl->codec = source->codec;
+    impl->duration = source->duration;
 }
 
 /**
@@ -61,6 +67,14 @@ const std::string& Track::getTitle() const & noexcept {
 const std::string& Track::getCodec() const & noexcept {
 
     return impl->codec;
+}
+
+/**
+ *
+ */
+const unsigned int& Track::getDuration() const & noexcept {
+
+    return impl->duration;
 }
 
 /**

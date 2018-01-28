@@ -16,6 +16,7 @@ struct Track {
      *
      * @param title the title of the track
      * @param codec the codec of the track
+     * @param duration the track duration
      *
      * expensive strings copies occure here,
      * we cannot simply use references
@@ -26,7 +27,8 @@ struct Track {
      */
     Track(
         const std::string title,
-        const std::string codec
+        const std::string codec,
+        const unsigned int duration
     );
 
     /**
@@ -63,6 +65,13 @@ struct Track {
      * @return const std::string&
      */
     const std::string& getCodec() const & noexcept;
+
+    /**
+     * @brief getter of the track duration
+     *
+     * @return const unsigned int&
+     */
+    const unsigned int& getDuration() const & noexcept;
 
     /**
      * @brief getter of the current track position
