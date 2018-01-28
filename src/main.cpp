@@ -77,6 +77,14 @@ int main() {
             continue;
         }
 
+        if (
+            track != nullptr and
+            command == "resume"
+        ) {
+            track->resume();
+            continue;
+        }
+
         if (separatorIndex == std::string::npos) {
             displayInputError();
             continue;
