@@ -26,6 +26,7 @@ int main() {
     std::vector<std::string> playlist;
     std::string input;
     std::thread player;
+    std::shared_ptr<Track> track {nullptr};
 
     while (true) {
 
@@ -79,9 +80,11 @@ int main() {
         else if (command == "play_track") {
 
             try {
-                Track track = loadTrack(
-                    playlist,
-                    option
+                track = std::make_shared<Track>(
+                    loadTrack(
+                        playlist,
+                        option
+                    )
                 );
 
                 player = std::thread(
@@ -89,7 +92,7 @@ int main() {
                     track
                 );
 
-                std::cout << "Playing " + track.getTitle() << std::endl;
+                std::cout << "Playing " + track->getTitle() << std::endl;
             }
             catch (std::invalid_argument& exception) {
                 std::cout << exception.what() << std::endl;

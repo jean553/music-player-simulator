@@ -131,7 +131,7 @@ Track loadTrack(
 /**
  *
  */
-void playTrack(Track track) {
+void playTrack(const std::shared_ptr<Track> track) {
 
     for (
         auto index = 0u;
@@ -141,6 +141,6 @@ void playTrack(Track track) {
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
-        track.incrementPosition();
+        track->incrementPosition();
     }
 }

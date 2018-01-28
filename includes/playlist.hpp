@@ -64,6 +64,6 @@ Track loadTrack(
  *
  * @param track the track to play
  */
-void playTrack(Track track);
+void playTrack(const std::shared_ptr<Track> track);
 
 #endif
