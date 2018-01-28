@@ -96,8 +96,10 @@ int main() {
             track != nullptr and
             command == "next"
         ) {
-            track->stop();
-            player->join();
+            terminateTrack(
+                track,
+                player
+            );
 
             /* TODO: to define */
 
@@ -108,8 +110,10 @@ int main() {
             track != nullptr and
             command == "previous"
         ) {
-            track->stop();
-            player->join();
+            terminateTrack(
+                track,
+                player
+            );
 
             /* TODO: to define */
 
@@ -135,10 +139,10 @@ int main() {
         else if (command == "play_track") {
 
             if (track != nullptr) {
-                track->stop();
-                player->join();
-                track.reset();
-                player.reset();
+                terminateTrack(
+                    track,
+                    player
+                );
             }
 
             try {

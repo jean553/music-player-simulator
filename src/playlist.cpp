@@ -10,7 +10,6 @@
 #include <unordered_set>
 #include <algorithm>
 #include <fstream>
-#include <thread>
 #include <chrono>
 
 /**
@@ -169,4 +168,18 @@ void showTrack(const std::shared_ptr<Track>& track) {
     std::cout << "Codec: " << track->getCodec() << std::endl;
     std::cout << "Duration: " << track->getDuration() << std::endl;
     std::cout << "Current position: " << track->getPosition() << std::endl;
+}
+
+/**
+ *
+ */
+void terminateTrack(
+    std::shared_ptr<Track>& track,
+    std::unique_ptr<std::thread>& player
+) {
+    track->stop();
+    player->join();
+
+    track.reset();
+    player.reset();
 }
