@@ -107,31 +107,24 @@ int main() {
             continue;
         }
 
-        /* FIXME: identical code is used for both the next
-           and previous commands, this code should be refactored */
-
         if (
-            command == "next" and
-            playedIndex != playlist.size() - 1
+            command == "next" or
+            command == "previous"
         ) {
 
-            playedIndex += 1;
-
-            loadTrack(
-                track,
-                playlist[playedIndex],
-                cv
-            );
-
-            continue;
-        }
-
-        if (
-            command == "previous" and
-            playedIndex != 0
-        ) {
-
-            playedIndex -= 1;
+            if (
+                command == "next" and
+                playedIndex != playlist.size() - 1
+            ) {
+                playedIndex += 1;
+            } else if (
+                command == "previous" and
+                playedIndex != 0
+            ) {
+                playedIndex -= 1;
+            } else {
+                continue;
+            }
 
             loadTrack(
                 track,
