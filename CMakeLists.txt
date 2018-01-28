@@ -20,3 +20,5 @@ add_executable(
     src/main.cpp
     ${sources}
 )
+
+target_link_libraries(music-player-simulator pthread)

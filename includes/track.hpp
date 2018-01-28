@@ -35,11 +35,27 @@ struct Track {
     ~Track();
 
     /**
+     * @brief copy constructor that ensures copy of the implementation content
+     * referenced by a brand new unique pointer; used when copied the track
+     * into the playing thread
+     *
+     * @param track the source track
+     */
+    Track(const Track& track);
+
+    /**
      * @brief move constructor in order to automatically remove
      * all the copy operations and ensure implementation
      * unique pointer movement
      */
     Track(Track&& track);
+
+    /**
+     * @brief getter of the track title
+     *
+     * @return const std::string&
+     */
+    const std::string& getTitle() const & noexcept;
 
     struct Impl;
     std::unique_ptr<Impl> impl;

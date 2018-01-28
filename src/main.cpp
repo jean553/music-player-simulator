@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <thread>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -24,6 +25,7 @@ int main() {
 
     std::vector<std::string> playlist;
     std::string input;
+    std::thread player;
 
     while (true) {
 
@@ -81,6 +83,13 @@ int main() {
                     playlist,
                     option
                 );
+
+                player = std::thread(
+                    playTrack,
+                    track
+                );
+
+                std::cout << "Playing " + track.getTitle() << std::endl;
             }
             catch (std::invalid_argument& exception) {
                 std::cout << exception.what() << std::endl;
@@ -96,7 +105,12 @@ int main() {
         } else {
             displayInputError();
         }
-    };
+    }
+
+    /* TODO: safe solution, but it should not wait
+       until the end of the thread before leaving;
+       throws exception if the thread has not been started */
+    player.join();
 
     return EXIT_SUCCESS;
 }
