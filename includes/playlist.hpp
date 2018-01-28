@@ -62,8 +62,22 @@ Track loadTrack(
 /**
  * @brief simulate a track playing procedure
  *
- * @param track the track to play
+ * @param track shared pointer to the track to play
+ *
+ * the shared pointer is copied as we want it to be accessible
+ * from both of the playing thread and the main thread
+ *
+ * WARNING: the track shared pointer must not be null
  */
 void playTrack(const std::shared_ptr<Track> track);
+
+/**
+ * @brief outputs the track information
+ *
+ * @param track shared pointer reference to the track to analyze
+ *
+ * WARNING: the track shared pointer must not be null
+ */
+void showTrack(const std::shared_ptr<Track>& track);
 
 #endif
