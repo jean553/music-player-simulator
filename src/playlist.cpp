@@ -81,7 +81,14 @@ void removeTrack(
 /**
  *
  */
-void playTrack(const std::shared_ptr<Track> track) {
+void playTrack(
+    const std::unique_ptr<Track>& track,
+    std::condition_variable& cv,
+    std::mutex& mutex
+) {
+    /* waits for the play_track command */
+    std::unique_lock<std::mutex> lock(mutex);
+    cv.wait(lock);
 
     const auto duration = track->getDuration();
 
@@ -109,7 +116,7 @@ void playTrack(const std::shared_ptr<Track> track) {
 /**
  *
  */
-void showTrack(const std::shared_ptr<Track>& track) {
+void showTrack(const std::unique_ptr<Track>& track) {
 
     std::cout << "Title: " << track->getTitle() << std::endl;
     std::cout << "Codec: " << track->getCodec() << std::endl;
@@ -121,17 +128,14 @@ void showTrack(const std::shared_ptr<Track>& track) {
  *
  */
 void loadTrack(
-    std::shared_ptr<Track>& track,
-    std::unique_ptr<std::thread>& player,
-    const std::string& filename
+    std::unique_ptr<Track>& track,
+    const std::string& filename,
+    std::condition_variable& cv
 ) {
 
     if (track != nullptr) {
         track->stop();
-        player->join();
-
         track.reset();
-        player.reset();
     }
 
     std::ifstream file(filename);
@@ -157,16 +161,14 @@ void loadTrack(
 
     file >> duration;
 
-    track = std::make_shared<Track>(
-        title,
-        codec,
-        duration
-    );
-
-    player = std::make_unique<std::thread>(
-        std::thread(
-            playTrack,
-            track
+    track.reset(
+        new Track(
+            title,
+            codec,
+            duration
         )
     );
+
+    /* starts the player thread */
+    cv.notify_one();
 } 

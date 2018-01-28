@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <thread>
+#include <condition_variable>
 
 /**
  * @brief lists all the tracks
@@ -50,35 +51,38 @@ void removeTrack(
  * runs a loop that increments the track position every second
  * until the position is equal to the track duration
  *
- * @param track shared pointer to the track to play
- *
- * the shared pointer is copied as we want it to be accessible
- * from both of the playing thread and the main thread
+ * @param track unique pointer to the track to play
+ * @param cv condition variable to start playing
+ * @param mutex used with the condition variable for playing
  *
  * WARNING: the track shared pointer must not be null
  */
-void playTrack(const std::shared_ptr<Track> track);
+void playTrack(
+    const std::unique_ptr<Track>& track,
+    std::condition_variable& cv,
+    std::mutex& mutex
+);
 
 /**
  * @brief outputs the track information
  *
- * @param track shared pointer reference to the track to analyze
+ * @param track unique pointer reference to the track to analyze
  *
- * WARNING: the track shared pointer must not be null
+ * WARNING: the track unique pointer must not be null
  */
-void showTrack(const std::shared_ptr<Track>& track);
+void showTrack(const std::unique_ptr<Track>& track);
 
 /**
  * @brief loads the sound according to the file name
  *
- * @param track shared pointer reference where to load the track
- * @param player unique pointer reference to the player to use
+ * @param track unique pointer reference where to load the track
  * @param filename the name of the file to load
+ * @param cv condition variable to start the player thread
  */
 void loadTrack(
-    std::shared_ptr<Track>& track,
-    std::unique_ptr<std::thread>& player,
-    const std::string& filename
+    std::unique_ptr<Track>& track,
+    const std::string& filename,
+    std::condition_variable& cv
 );
 
 #endif

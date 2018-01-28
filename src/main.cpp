@@ -10,6 +10,7 @@
 #include <thread>
 #include <algorithm>
 #include <cstdlib>
+#include <condition_variable>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -29,16 +30,18 @@ int main() {
 
     std::vector<std::string> playlist;
     std::string input;
-    std::shared_ptr<Track> track {nullptr};
+    std::unique_ptr<Track> track {nullptr};
     unsigned int playedIndex {0};
 
-    /* FIXME: wrap the thread into an unique pointer
-       in order to be able to access it through
-       a larger scope and also being able to know
-       if it has been started or not (preventing runtime error
-       when calling detach() at the end of the program);
-       check if using std::task API is better */
-    std::unique_ptr<std::thread> player {nullptr};
+    std::condition_variable cv;
+    std::mutex mutex;
+
+    std::thread player(
+        playTrack,
+        std::ref(track),
+        std::ref(cv),
+        std::ref(mutex)
+    );
 
     while (true) {
 
@@ -97,8 +100,8 @@ int main() {
 
             loadTrack(
                 track,
-                player,
-                playlist[playedIndex]
+                playlist[playedIndex],
+                cv
             );
 
             continue;
@@ -116,8 +119,8 @@ int main() {
 
             loadTrack(
                 track,
-                player,
-                playlist[playedIndex]
+                playlist[playedIndex],
+                cv
             );
 
             continue;
@@ -132,8 +135,8 @@ int main() {
 
             loadTrack(
                 track,
-                player,
-                playlist[playedIndex]
+                playlist[playedIndex],
+                cv
             );
 
             continue;
@@ -175,8 +178,8 @@ int main() {
 
             loadTrack(
                 track,
-                player,
-                option
+                option,
+                cv
             );
 
             std::cout << "Playing " + track->getTitle() << std::endl;
@@ -192,9 +195,7 @@ int main() {
         }
     }
 
-    if (player != nullptr) {
-        player->detach();
-    }
+    player.detach();
 
     return EXIT_SUCCESS;
 }
