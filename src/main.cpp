@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <thread>
+#include <algorithm>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -26,6 +27,7 @@ int main() {
     std::vector<std::string> playlist;
     std::string input;
     std::shared_ptr<Track> track {nullptr};
+    unsigned int playedIndex {0};
 
     /* FIXME: wrap the thread into an unique pointer
        in order to be able to access it through
@@ -92,30 +94,59 @@ int main() {
             continue;
         }
 
+        /* FIXME: identical code is used for both the next
+           and previous commands, this code should be refactored */
+
         if (
             track != nullptr and
-            command == "next"
+            command == "next" and
+            playedIndex != playlist.size() - 1
         ) {
             terminateTrack(
                 track,
                 player
             );
 
-            /* TODO: to define */
+            try {
+                loadTrack(
+                    track,
+                    player,
+                    playlist[playedIndex + 1]
+                );
+            }
+            catch (std::invalid_argument& exception) {
+                std::cout << exception.what() << std::endl;
+                continue;
+            }
+
+            playedIndex += 1;
 
             continue;
         }
 
         if (
             track != nullptr and
-            command == "previous"
+            command == "previous" and
+            playedIndex != 0
         ) {
             terminateTrack(
                 track,
                 player
             );
 
-            /* TODO: to define */
+            try {
+                loadTrack(
+                    track,
+                    player,
+                    playlist[playedIndex - 1]
+                );
+            }
+            catch (std::invalid_argument& exception) {
+                std::cout << exception.what() << std::endl;
+                continue;
+            }
+
+            playedIndex -= 1;
 
             continue;
         }
@@ -145,12 +176,22 @@ int main() {
                 );
             }
 
+            const auto index = std::find(
+                playlist.cbegin(),
+                playlist.cend(),
+                option
+            );
+
+            if (index == playlist.cend()) {
+                std::cout << "Sound not in list." << std::endl;
+                continue;
+            }
+
             try {
-                track = std::make_shared<Track>(
-                    loadTrack(
-                        playlist,
-                        option
-                    )
+                loadTrack(
+                    track,
+                    player,
+                    option
                 );
             }
             catch (std::invalid_argument& exception) {
@@ -158,11 +199,9 @@ int main() {
                 continue;
             }
 
-            player = std::make_unique<std::thread>(
-                std::thread(
-                    playTrack,
-                    track
-                )
+            playedIndex = std::distance(
+                playlist.cbegin(),
+                index
             );
 
             std::cout << "Playing " + track->getTitle() << std::endl;

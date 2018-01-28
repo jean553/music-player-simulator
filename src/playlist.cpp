@@ -81,20 +81,7 @@ void removeTrack(
 /**
  *
  */
-Track loadTrack(
-    const std::vector<std::string>& playlist,
-    const std::string& filename
-) {
-
-    const auto index = std::find(
-        playlist.cbegin(),
-        playlist.cend(),
-        filename
-    );
-
-    if (index == playlist.cend()) {
-        throw std::invalid_argument("Track not found in playlist.");
-    }
+Track openTrack(const std::string& filename) {
 
     std::ifstream file(filename);
 
@@ -183,3 +170,21 @@ void terminateTrack(
     track.reset();
     player.reset();
 }
+
+/**
+ *
+ */
+void loadTrack(
+    std::shared_ptr<Track>& track,
+    std::unique_ptr<std::thread>& player,
+    const std::string& filename
+) {
+    track = std::make_shared<Track>(openTrack(filename));
+
+    player = std::make_unique<std::thread>(
+        std::thread(
+            playTrack,
+            track
+        )
+    );
+} 
