@@ -134,6 +134,13 @@ int main() {
         }
         else if (command == "play_track") {
 
+            if (track != nullptr) {
+                track->stop();
+                player->join();
+                track.reset();
+                player.reset();
+            }
+
             try {
                 track = std::make_shared<Track>(
                     loadTrack(
