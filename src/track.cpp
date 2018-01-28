@@ -21,6 +21,17 @@ Track::Track(
     const std::string title,
     const std::string codec
 ) : impl(std::make_unique<Impl>()) {
+    impl->title = title;
+    impl->codec = codec;
+}
+
+/**
+ *
+ */
+Track::Track(const Track& track) : impl(std::make_unique<Impl>()) {
+
+    impl->title = track.impl->title;
+    impl->codec = track.impl->codec;
 }
 
 /**
