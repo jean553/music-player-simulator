@@ -141,6 +141,10 @@ void playTrack(const std::shared_ptr<Track> track) {
 
     while (duration != track->getPosition())
     {
+        if (track->isStopped()) {
+            break;
+        }
+
         if (not track->isPlaying()) {
 
             /* FIXME: very bad design, cause CPU to run at maximum,

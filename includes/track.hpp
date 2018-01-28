@@ -96,11 +96,23 @@ struct Track {
     void resume() const & noexcept;
 
     /**
+     * @brief forces the track to be stopped
+     */
+    void stop() const & noexcept;
+
+    /**
      * @brief indicates if the track is playing
      *
      * @return const bool&
      */
     const bool& isPlaying() const & noexcept;
+
+    /**
+     * @brief indicates if the track is stopped
+     *
+     * @return const bool&
+     */
+    const bool& isStopped() const & noexcept;
 
     struct Impl;
     std::unique_ptr<Impl> impl;

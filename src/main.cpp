@@ -92,6 +92,30 @@ int main() {
             continue;
         }
 
+        if (
+            track != nullptr and
+            command == "next"
+        ) {
+            track->stop();
+            player->join();
+
+            /* TODO: to define */
+
+            continue;
+        }
+
+        if (
+            track != nullptr and
+            command == "previous"
+        ) {
+            track->stop();
+            player->join();
+
+            /* TODO: to define */
+
+            continue;
+        }
+
         if (separatorIndex == std::string::npos) {
             displayInputError();
             continue;
