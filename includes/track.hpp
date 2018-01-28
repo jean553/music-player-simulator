@@ -80,11 +80,29 @@ struct Track {
     void resume() const & noexcept;
 
     /**
+     * @brief restarts the current track, used for repetition
+     * and at the end of playing
+     */
+    void restart() const & noexcept;
+
+    /**
      * @brief indicates if the track is playing
      *
      * @return const bool&
      */
     const bool& isPlaying() const & noexcept;
+
+    /**
+     * @brief indicates if the track is continuously repeated
+     *
+     * @return const bool&
+     */
+    const bool& isRepeated() const & noexcept;
+
+    /**
+     * @brief enables repetition of the current track
+     */
+    void repeat() const & noexcept;
 
     struct Impl;
     std::unique_ptr<Impl> impl;

@@ -90,7 +90,7 @@ void playTrack(
     std::unique_lock<std::mutex> lock(mutex);
     cv.wait(lock);
 
-    while (track->getDuration() != track->getPosition())
+    while (true)
     {
         if (not track->isPlaying()) {
 
@@ -105,6 +105,14 @@ void playTrack(
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         track->incrementPosition();
+
+        if (track->getDuration() == track->getPosition()) {
+            track->restart();
+
+            if (not track->isRepeated()) {
+                track->pause();
+            }
+        }
     }
 }
 

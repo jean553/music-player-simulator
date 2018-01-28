@@ -92,6 +92,11 @@ int main() {
                 cv.notify_one();
                 continue;
             }
+
+            if (command == "repeat") {
+                track->repeat();
+                continue;
+            }
         }
 
         if (command == "random") {
