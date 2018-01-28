@@ -102,3 +102,11 @@ void Track::incrementPosition() const & noexcept {
 
     impl->position += 1;
 }
+
+/**
+ *
+ */
+const bool& Track::isPlaying() const & noexcept {
+
+    return impl->playing;
+}
