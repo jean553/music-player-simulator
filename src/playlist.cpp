@@ -81,7 +81,7 @@ void removeTrack(
 /**
  *
  */
-Track loadTrack(
+Track openTrack(
     const std::vector<std::string>& playlist,
     const std::string& filename
 ) {

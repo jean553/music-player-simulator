@@ -160,7 +160,7 @@ int main() {
 
             try {
                 track = std::make_shared<Track>(
-                    loadTrack(
+                    openTrack(
                         playlist,
                         option
                     )

@@ -55,7 +55,7 @@ void removeTrack(
  * does not exist into the playlist or
  * the given file cannot be opened
  */
-Track loadTrack(
+Track openTrack(
     const std::vector<std::string>& playlist,
     const std::string& filename
 );
