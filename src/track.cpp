@@ -58,6 +58,14 @@ const std::string& Track::getTitle() const & noexcept {
 /**
  *
  */
+const std::string& Track::getCodec() const & noexcept {
+
+    return impl->codec;
+}
+
+/**
+ *
+ */
 const unsigned int& Track::getPosition() const & noexcept {
 
     return impl->position;

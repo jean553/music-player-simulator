@@ -58,6 +58,13 @@ struct Track {
     const std::string& getTitle() const & noexcept;
 
     /**
+     * @brief getter of the track codec
+     *
+     * @return const std::string&
+     */
+    const std::string& getCodec() const & noexcept;
+
+    /**
      * @brief getter of the current track position
      *
      * @return const unsigned int&
