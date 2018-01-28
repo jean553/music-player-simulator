@@ -150,8 +150,9 @@ void playTrack(const std::shared_ptr<Track> track) {
  */
 void showTrack(const std::shared_ptr<Track>& track) {
 
-    /* TODO: add more information here */
+    /* TODO: add duration here */
 
     std::cout << "Title: " << track->getTitle() << std::endl;
+    std::cout << "Codec: " << track->getCodec() << std::endl;
     std::cout << "Current position: " << track->getPosition() << std::endl;
 }
