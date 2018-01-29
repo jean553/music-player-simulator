@@ -1,0 +1,13 @@
+add_track tests/files/first
+play_track tests/files/first
+add_track tests/files/second
+show_track
+next
+show_track
+next
+show_track
+previous
+show_track
+previous
+show_track
+exit
