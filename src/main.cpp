@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <condition_variable>
+#include <fstream>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -31,7 +32,8 @@ int main() {
     std::vector<std::string> playlist;
     std::string input;
     std::unique_ptr<Track> track {nullptr};
-    unsigned int playedIndex {0};
+    int playedIndex {-1};
+    int nextIndex {-1};
 
     std::condition_variable cv;
     std::mutex mutex;
@@ -100,16 +102,7 @@ int main() {
         }
 
         if (command == "random") {
-
-            playedIndex = rand() % playlist.size();
-
-            loadTrack(
-                track,
-                playlist[playedIndex],
-                cv
-            );
-
-            continue;
+            nextIndex = rand() % playlist.size();
         }
 
         if (
@@ -121,24 +114,19 @@ int main() {
                 command == "next" and
                 playedIndex != playlist.size() - 1
             ) {
-                playedIndex += 1;
+                nextIndex += 1;
             } else if (
                 command == "previous" and
                 playedIndex != 0
             ) {
-                playedIndex -= 1;
+                nextIndex -= 1;
             } else {
                 continue;
             }
-
-            loadTrack(
-                track,
-                playlist[playedIndex],
-                cv
-            );
-
-            continue;
         }
+
+        /* FIXME: find a way to reach the track loading process
+           if the command is either next, previous or random */
 
         if (separatorIndex == std::string::npos) {
             displayInputError();
@@ -158,29 +146,14 @@ int main() {
         }
         else if (command == "play_track") {
 
-            const auto index = std::find(
+            nextIndex = std::distance(
                 playlist.cbegin(),
-                playlist.cend(),
-                option
+                std::find(
+                    playlist.cbegin(),
+                    playlist.cend(),
+                    option
+                )
             );
-
-            if (index == playlist.cend()) {
-                std::cout << "Sound not in list." << std::endl;
-                continue;
-            }
-
-            playedIndex = std::distance(
-                playlist.cbegin(),
-                index
-            );
-
-            loadTrack(
-                track,
-                option,
-                cv
-            );
-
-            std::cout << "Playing " + track->getTitle() << std::endl;
         }
         else if (command == "remove_track") {
 
@@ -191,6 +164,26 @@ int main() {
         } else {
             displayInputError();
         }
+
+        if (nextIndex == playedIndex) {
+            continue;
+        }
+
+        std::ifstream file(playlist[nextIndex]);
+        if (not file.is_open()) {
+            std::cout << "Cannot open file" << std::endl;
+            continue;
+        }
+
+        loadTrack(
+            track,
+            cv,
+            file
+        );
+
+        std::cout << "Playing " + track->getTitle() << std::endl;
+
+        playedIndex = nextIndex;
     }
 
     cv.notify_one();
