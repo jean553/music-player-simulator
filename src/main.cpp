@@ -131,7 +131,7 @@ int main() {
 
             std::ifstream file(playlist[nextIndex]);
             if (not file.is_open()) {
-                std::cout << "Cannot open file" << std::endl;
+                std::cout << "Cannot open file." << std::endl;
                 continue;
             }
 
@@ -201,7 +201,7 @@ int main() {
 
         std::ifstream file(playlist[nextIndex]);
         if (not file.is_open()) {
-            std::cout << "Cannot open file" << std::endl;
+            std::cout << "Cannot open file." << std::endl;
             continue;
         }
 
