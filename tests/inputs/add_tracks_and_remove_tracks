@@ -1,0 +1,10 @@
+add_track first_track
+add_track second_track
+add_track third_track
+add_track second_track
+list
+remove_track second_track
+list
+remove_track third_track
+list
+exit
