@@ -1,0 +1,14 @@
+add_track first_track
+add_track second_track
+add_track first_track
+add_track second_track
+add_track third_track
+add_track first_track
+add_track first_track
+add_track first_track
+add_track third_track
+add_track fourth_track
+list
+remove_duplicates
+list
+exit
