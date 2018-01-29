@@ -43,6 +43,7 @@ The project has been successfully compiled and executed on:
     * [pause](#pause)
     * [resume](#resume)
     * [repeat](#repeat)
+ - [File format](#file-format)
 
 ## Program
 
@@ -203,4 +204,14 @@ forever until a new track is played.
 
 ```sh
 >>> repeat
+```
+
+## File format
+
+The simulated file has the following format:
+
+```
+title
+codec
+duration
 ```
