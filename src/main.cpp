@@ -102,27 +102,6 @@ int main() {
             } else {
                 continue;
             }
-
-            /* FIXME: similar code than the final
-               loading track process at the end of this file */
-
-            std::ifstream file(playlist[nextIndex]);
-            if (not file.is_open()) {
-                std::cout << "Cannot open file." << std::endl;
-                continue;
-            }
-
-            loadTrack(
-                track,
-                cv,
-                file
-            );
-
-            std::cout << "Playing " + playlist[nextIndex] << std::endl;
-
-            playedIndex = nextIndex;
-
-            continue;
         }
 
         if (
