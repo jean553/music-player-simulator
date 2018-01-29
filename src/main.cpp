@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <condition_variable>
+#include <fstream>
 
 /**
  * @brief displays an error message for an incorrect input
@@ -103,10 +104,18 @@ int main() {
 
             playedIndex = rand() % playlist.size();
 
+            std::ifstream file(playlist[playedIndex]);
+
+            if (not file.is_open()) {
+                std::cout << "Cannot open file" << std::endl;
+                continue;
+            }
+
             loadTrack(
                 track,
                 playlist[playedIndex],
-                cv
+                cv,
+                file
             );
 
             continue;
@@ -131,10 +140,18 @@ int main() {
                 continue;
             }
 
+            std::ifstream file(playlist[playedIndex]);
+
+            if (not file.is_open()) {
+                std::cout << "Cannot open file" << std::endl;
+                continue;
+            }
+
             loadTrack(
                 track,
                 playlist[playedIndex],
-                cv
+                cv,
+                file
             );
 
             continue;
@@ -174,10 +191,18 @@ int main() {
                 index
             );
 
+            std::ifstream file(option);
+
+            if (not file.is_open()) {
+                std::cout << "Cannot open file" << std::endl;
+                continue;
+            }
+
             loadTrack(
                 track,
                 option,
-                cv
+                cv,
+                file
             );
 
             std::cout << "Playing " + track->getTitle() << std::endl;

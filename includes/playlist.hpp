@@ -78,11 +78,13 @@ void showTrack(const std::unique_ptr<Track>& track);
  * @param track unique pointer reference where to load the track
  * @param filename the name of the file to load
  * @param cv condition variable to start the player thread
+ * @param file the file stream to read data from
  */
 void loadTrack(
     std::unique_ptr<Track>& track,
     const std::string& filename,
-    std::condition_variable& cv
+    std::condition_variable& cv,
+    std::ifstream& file
 );
 
 #endif
