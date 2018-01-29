@@ -76,7 +76,99 @@ int main() {
             continue;
         }
 
-        if (track != nullptr) {
+        if (
+            command == "next" or
+            command == "previous" or
+            command == "random"
+        ) {
+
+            if (playlist.empty()) {
+                displayInputError();
+                continue;
+            }
+
+            if (
+                command == "next" and
+                playedIndex != static_cast<int>(playlist.size() - 1)
+            ) {
+                nextIndex += 1;
+            } else if (
+                command == "previous" and
+                playedIndex != 0
+            ) {
+                nextIndex -= 1;
+            } else if (command == "random") {
+                nextIndex = rand() % playlist.size();
+            } else {
+                continue;
+            }
+        }
+
+        if (
+            command == "add_track" or
+            command == "play_track" or
+            command == "remove_track"
+        ) {
+
+            std::string option;
+
+            if (separatorIndex == std::string::npos) {
+                displayInputError();
+                continue;
+            }
+
+            /* add one to do not include the prefixed
+               space into the file name */
+            option = input.substr(separatorIndex + 1);
+
+            if (option.find_first_not_of(SEPARATOR) == std::string::npos) {
+                displayInputError();
+                continue;
+            }
+
+            if (command == "add_track") {
+                playlist.push_back(option);
+                continue;
+            }
+
+            if (command == "remove_track") {
+                removeTrack(
+                    playlist,
+                    option
+                );
+                continue;
+            }
+
+            if (command == "play_track") {
+
+                if (playlist.empty()) {
+                    displayInputError();
+                    continue;
+                }
+
+                const auto searchedItem = std::find(
+                    playlist.cbegin(),
+                    playlist.cend(),
+                    option
+                );
+
+                if (searchedItem == playlist.cend()) {
+                    std::cout << "Track not found." << std::endl;
+                    continue;
+                }
+
+                nextIndex = std::distance(
+                    playlist.cbegin(),
+                    searchedItem
+                );
+            }
+
+        } else {
+
+            if (track == nullptr) {
+                displayInputError();
+                continue;
+            }
 
             if (command == "show_track") {
                 showTrack(track);
@@ -104,102 +196,8 @@ int main() {
             }
         }
 
-        if (
-            command == "next" or
-            command == "previous" or
-            command == "random"
-        ) {
-
-            if (
-                command == "next" and
-                playedIndex != playlist.size() - 1
-            ) {
-                nextIndex += 1;
-            } else if (
-                command == "previous" and
-                playedIndex != 0
-            ) {
-                nextIndex -= 1;
-            } else if (command == "random") {
-                nextIndex = rand() % playlist.size();
-            } else {
-                continue;
-            }
-
-            /* FIXME: similar code than the final
-               loading track process at the end of this file */
-
-            std::ifstream file(playlist[nextIndex]);
-            if (not file.is_open()) {
-                std::cout << "Cannot open file." << std::endl;
-                continue;
-            }
-
-            loadTrack(
-                track,
-                cv,
-                file
-            );
-
-            std::cout << "Playing " + playlist[nextIndex] << std::endl;
-
-            playedIndex = nextIndex;
-
-            continue;
-        }
-
-        if (separatorIndex == std::string::npos) {
-            displayInputError();
-            continue;
-        }
-
-        /* add one to do not include the prefixed space into the file name */
-        std::string option = input.substr(separatorIndex + 1);
-
-        if (option.find_first_not_of(SEPARATOR) == std::string::npos) {
-            displayInputError();
-            continue;
-        }
-
-        if (command == "add_track") {
-            playlist.push_back(option);
-        }
-        else if (
-            command == "play_track" and
-            not playlist.empty()
-        ) {
-
-            const auto searchedItem = std::find(
-                playlist.cbegin(),
-                playlist.cend(),
-                option
-            );
-
-            if (searchedItem == playlist.cend()) {
-                std::cout << "Track not found." << std::endl;
-                continue;
-            }
-
-            nextIndex = std::distance(
-                playlist.cbegin(),
-                searchedItem
-            );
-        }
-        else if (command == "remove_track") {
-
-            removeTrack(
-                playlist,
-                option
-            );
-        } else {
-            displayInputError();
-        }
-
-        if (nextIndex == playedIndex) {
-            continue;
-        }
-
-        std::ifstream file(playlist[nextIndex]);
+        const auto& selection = playlist[nextIndex];
+        std::ifstream file(selection);
         if (not file.is_open()) {
             std::cout << "Cannot open file." << std::endl;
             continue;
@@ -211,7 +209,7 @@ int main() {
             file
         );
 
-        std::cout << "Playing " + playlist[nextIndex] << std::endl;
+        std::cout << "Playing " + selection << std::endl;
 
         playedIndex = nextIndex;
     }
