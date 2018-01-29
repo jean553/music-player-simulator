@@ -83,6 +83,11 @@ int main() {
                 continue;
             }
 
+            if (command == "show_position") {
+                showPosition(track);
+                continue;
+            }
+
             if (command == "pause") {
                 track->pause();
                 continue;

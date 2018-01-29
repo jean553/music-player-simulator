@@ -130,6 +130,12 @@ void showTrack(const std::unique_ptr<Track>& track) {
     std::cout << "Title: " << track->getTitle() << std::endl;
     std::cout << "Codec: " << track->getCodec() << std::endl;
     std::cout << "Duration: " << track->getDuration() << std::endl;
+}
+
+/**
+ *
+ */
+void showPosition(const std::unique_ptr<Track>& track) {
     std::cout << "Current position: " << track->getPosition() << std::endl;
 }
 

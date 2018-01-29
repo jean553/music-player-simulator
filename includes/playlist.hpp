@@ -73,6 +73,15 @@ void playTrack(
 void showTrack(const std::unique_ptr<Track>& track);
 
 /**
+ * @brief outputs the track position
+ *
+ * @param track unique pointer reference to the track to analyze
+ *
+ * WARNING: the track unique pointer must not be null
+ */
+void showPosition(const std::unique_ptr<Track>& track);
+
+/**
  * @brief loads the sound according to the file name
  *
  * @param track unique pointer reference where to load the track
