@@ -101,13 +101,10 @@ int main() {
             }
         }
 
-        if (command == "random") {
-            nextIndex = rand() % playlist.size();
-        }
-
         if (
             command == "next" or
-            command == "previous"
+            command == "previous" or
+            command == "random"
         ) {
 
             if (
@@ -120,13 +117,33 @@ int main() {
                 playedIndex != 0
             ) {
                 nextIndex -= 1;
+            } else if (command == "random") {
+                nextIndex = rand() % playlist.size();
             } else {
                 continue;
             }
-        }
 
-        /* FIXME: find a way to reach the track loading process
-           if the command is either next, previous or random */
+            /* FIXME: similar code than the final
+               loading track process at the end of this file */
+
+            std::ifstream file(playlist[nextIndex]);
+            if (not file.is_open()) {
+                std::cout << "Cannot open file" << std::endl;
+                continue;
+            }
+
+            loadTrack(
+                track,
+                cv,
+                file
+            );
+
+            std::cout << "Playing " + track->getTitle() << std::endl;
+
+            playedIndex = nextIndex;
+
+            continue;
+        }
 
         if (separatorIndex == std::string::npos) {
             displayInputError();
