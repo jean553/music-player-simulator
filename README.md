@@ -2,6 +2,24 @@
 
 # music-player-simulator
 
+Music playlist simulator. Provides a set of commands to manipulate basic playlist operations
+(add and remove tracks, play track, play the next track, play the previous track... etc...).
+
+**The simulated music is played into a dedicated thread**.
+The playing track position is incremented by the thread: this how is "simulated" a track execution.
+
+The project contains:
+ * the source code,
+ * unit tests,
+ * functionnal tests,
+ * usage documentation (following),
+ * code documentation (doxygen),
+ * Travis-CI build status
+
+The project has been successfully compiled and executed on:
+ * Archlinux (01-29-2018)
+ * Ubuntu 14.04 (Trusty) (via Travis-CI)
+
 ## Table of contents
 
  - [Program](#program)
@@ -25,6 +43,7 @@
     * [pause](#pause)
     * [resume](#resume)
     * [repeat](#repeat)
+ - [File format](#file-format)
 
 ## Program
 
@@ -185,4 +204,14 @@ forever until a new track is played.
 
 ```sh
 >>> repeat
+```
+
+## File format
+
+The simulated file has the following format:
+
+```
+title
+codec
+duration
 ```
