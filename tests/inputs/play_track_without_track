@@ -1,4 +1,5 @@
 play_track
 add_track first_track
 play_track second_track
+play_track first_track
 exit
