@@ -196,10 +196,6 @@ int main() {
             }
         }
 
-        if (nextIndex == playedIndex) {
-            continue;
-        }
-
         const auto& selection = playlist[nextIndex];
         std::ifstream file(selection);
         if (not file.is_open()) {
