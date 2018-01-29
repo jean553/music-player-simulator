@@ -169,13 +169,20 @@ int main() {
             not playlist.empty()
         ) {
 
+            const auto searchedItem = std::find(
+                playlist.cbegin(),
+                playlist.cend(),
+                option
+            );
+
+            if (searchedItem == playlist.cend()) {
+                std::cout << "Track not found." << std::endl;
+                continue;
+            }
+
             nextIndex = std::distance(
                 playlist.cbegin(),
-                std::find(
-                    playlist.cbegin(),
-                    playlist.cend(),
-                    option
-                )
+                searchedItem
             );
         }
         else if (command == "remove_track") {
