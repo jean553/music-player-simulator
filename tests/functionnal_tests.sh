@@ -20,3 +20,6 @@ execute_test add_tracks_and_remove_duplicates
 execute_test add_tracks_and_remove_tracks
 execute_test show_track
 execute_test add_tracks_and_next_and_previous
+execute_test play_pause_resume_repeat
+
+echo "All tests passed."
