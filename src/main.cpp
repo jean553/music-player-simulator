@@ -125,13 +125,13 @@ int main() {
             continue;
         }
 
-        std::string option;
-
         if (
             command == "add_track" or
             command == "play_track" or
             command == "remove_track"
         ) {
+
+            std::string option;
 
             if (separatorIndex == std::string::npos) {
                 displayInputError();
