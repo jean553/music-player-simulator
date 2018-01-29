@@ -34,7 +34,8 @@ void removeDuplicates(std::vector<std::string>& playlist) {
     /* tries to insert every item one by one into an unordered set
        (unordered only for performance purposes);
        check if the insertion has failed (item already there),
-       then simply remove the item from the playlist */
+       then simply remove the item from the playlist
+       (https://stackoverflow.com/questions/48475617/c-remove-duplicates-from-ordered-vector-of-strings) */
 
     std::unordered_set<std::string> temporarySet;
 
