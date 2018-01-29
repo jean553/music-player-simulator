@@ -18,3 +18,4 @@ execute_test play_track_without_track
 execute_test add_tracks_and_list
 execute_test add_tracks_and_remove_duplicates
 execute_test add_tracks_and_remove_tracks
+execute_test show_track
