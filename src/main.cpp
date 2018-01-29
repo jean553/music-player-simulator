@@ -164,7 +164,10 @@ int main() {
         if (command == "add_track") {
             playlist.push_back(option);
         }
-        else if (command == "play_track") {
+        else if (
+            command == "play_track" and
+            not playlist.empty()
+        ) {
 
             nextIndex = std::distance(
                 playlist.cbegin(),

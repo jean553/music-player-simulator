@@ -1,3 +1,4 @@
+play_track tests/files/first
 pause
 repeat
 resume
