@@ -138,7 +138,6 @@ void showTrack(const std::unique_ptr<Track>& track) {
  */
 void loadTrack(
     std::unique_ptr<Track>& track,
-    const std::string& filename,
     std::condition_variable& cv,
     std::ifstream& file
 ) {
