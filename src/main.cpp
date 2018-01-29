@@ -148,23 +148,43 @@ int main() {
             continue;
         }
 
-        if (separatorIndex == std::string::npos) {
-            displayInputError();
-            continue;
+        std::string option;
+
+        if (
+            command == "add_track" or
+            command == "play_track" or
+            command == "remove_track"
+        ) {
+
+            if (separatorIndex == std::string::npos) {
+                displayInputError();
+                continue;
+            }
+
+            /* add one to do not include the prefixed
+               space into the file name */
+            option = input.substr(separatorIndex + 1);
+
+            if (option.find_first_not_of(SEPARATOR) == std::string::npos) {
+                displayInputError();
+                continue;
+            }
+
+            if (command == "add_track") {
+                playlist.push_back(option);
+                continue;
+            }
+
+            if (command == "remove_track") {
+                removeTrack(
+                    playlist,
+                    option
+                );
+                continue;
+            }
         }
 
-        /* add one to do not include the prefixed space into the file name */
-        std::string option = input.substr(separatorIndex + 1);
-
-        if (option.find_first_not_of(SEPARATOR) == std::string::npos) {
-            displayInputError();
-            continue;
-        }
-
-        if (command == "add_track") {
-            playlist.push_back(option);
-        }
-        else if (
+        if (
             command == "play_track" and
             not playlist.empty()
         ) {
@@ -183,13 +203,6 @@ int main() {
             nextIndex = std::distance(
                 playlist.cbegin(),
                 searchedItem
-            );
-        }
-        else if (command == "remove_track") {
-
-            removeTrack(
-                playlist,
-                option
             );
         } else {
             displayInputError();
