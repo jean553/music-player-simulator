@@ -110,6 +110,11 @@ int main() {
             command == "random"
         ) {
 
+            if (playlist.empty()) {
+                displayInputError();
+                continue;
+            }
+
             if (
                 command == "next" and
                 playedIndex != playlist.size() - 1
@@ -182,30 +187,30 @@ int main() {
                 );
                 continue;
             }
-        }
 
-        if (
-            command == "play_track" and
-            not playlist.empty()
-        ) {
+            if (command == "play_track") {
 
-            const auto searchedItem = std::find(
-                playlist.cbegin(),
-                playlist.cend(),
-                option
-            );
+                if (playlist.empty()) {
+                    displayInputError();
+                    continue;
+                }
 
-            if (searchedItem == playlist.cend()) {
-                std::cout << "Track not found." << std::endl;
-                continue;
+                const auto searchedItem = std::find(
+                    playlist.cbegin(),
+                    playlist.cend(),
+                    option
+                );
+
+                if (searchedItem == playlist.cend()) {
+                    std::cout << "Track not found." << std::endl;
+                    continue;
+                }
+
+                nextIndex = std::distance(
+                    playlist.cbegin(),
+                    searchedItem
+                );
             }
-
-            nextIndex = std::distance(
-                playlist.cbegin(),
-                searchedItem
-            );
-        } else {
-            displayInputError();
         }
 
         if (nextIndex == playedIndex) {

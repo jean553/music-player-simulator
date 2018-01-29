@@ -1,5 +1,6 @@
 play_track tests/files/first
 pause
+random
 repeat
 resume
 add_track tests/files/first
