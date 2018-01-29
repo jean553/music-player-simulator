@@ -193,6 +193,7 @@ int main() {
         }
     }
 
+    cv.notify_one();
     player.detach();
 
     return EXIT_SUCCESS;

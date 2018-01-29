@@ -90,6 +90,12 @@ void playTrack(
     std::unique_lock<std::mutex> lock(mutex);
     cv.wait(lock);
 
+    /* this case happens when the program
+       is stopped without playing any track */
+    if (track == nullptr) {
+        return;
+    }
+
     while (true)
     {
         if (not track->isPlaying()) {
