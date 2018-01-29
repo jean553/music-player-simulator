@@ -6,7 +6,7 @@ Music playlist simulator. Provides a set of commands to manipulate basic playlis
 (add and remove tracks, play track, play the next track, play the previous track... etc...).
 
 **The simulated music is played into a dedicated thread**.
-The playing track position is incremented by the thread: this how is "simulated" a track execution.
+The playing track position is incremented by the thread: this is how is "simulated" a track execution.
 
 The project contains:
  * the source code,

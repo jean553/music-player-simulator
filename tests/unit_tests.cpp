@@ -97,6 +97,76 @@ void testRemoveTrackFromEmptyPlaylist() {
 /**
  *
  */
+void testRemoveDuplicatesWithNoDuplicate() {
+
+    vector<std::string> playlist;
+    playlist.push_back("z");
+    playlist.push_back("y");
+    playlist.push_back("x");
+
+    removeDuplicates(playlist);
+
+    assert(playlist.size() == 3);
+}
+
+/**
+ *
+ */
+void testRemoveDuplicatesWithOneDuplicate() {
+
+    vector<std::string> playlist;
+    playlist.push_back("z");
+    playlist.push_back("y");
+    playlist.push_back("x");
+    playlist.push_back("y");
+
+    removeDuplicates(playlist);
+
+    assert(playlist.size() == 3);
+    assert(find(playlist.cbegin(), playlist.cend(), "z") != playlist.end());
+    assert(find(playlist.cbegin(), playlist.cend(), "y") != playlist.end());
+    assert(find(playlist.cbegin(), playlist.cend(), "x") != playlist.end());
+}
+
+/**
+ *
+ */
+void testRemoveDuplicatesWithManyDuplicates() {
+
+    vector<std::string> playlist;
+    playlist.push_back("z");
+    playlist.push_back("y");
+    playlist.push_back("x");
+    playlist.push_back("y");
+    playlist.push_back("x");
+
+    removeDuplicates(playlist);
+
+    assert(playlist.size() == 3);
+    assert(find(playlist.cbegin(), playlist.cend(), "z") != playlist.end());
+    assert(find(playlist.cbegin(), playlist.cend(), "y") != playlist.end());
+    assert(find(playlist.cbegin(), playlist.cend(), "x") != playlist.end());
+}
+
+/**
+ *
+ */
+void testRemoveDuplicatesWithOnlyDuplicates() {
+
+    vector<std::string> playlist;
+    playlist.push_back("x");
+    playlist.push_back("x");
+    playlist.push_back("x");
+
+    removeDuplicates(playlist);
+
+    assert(playlist.size() == 1);
+    assert(find(playlist.cbegin(), playlist.cend(), "x") != playlist.end());
+}
+
+/**
+ *
+ */
 int main() {
 
     testRemoveFirstTrack();
@@ -104,6 +174,11 @@ int main() {
     testRemoveLastTrack();
     testRemoveAllTracks();
     testRemoveTrackFromEmptyPlaylist();
+
+    testRemoveDuplicatesWithNoDuplicate();
+    testRemoveDuplicatesWithOneDuplicate();
+    testRemoveDuplicatesWithManyDuplicates();
+    testRemoveDuplicatesWithOnlyDuplicates();
 
     cout << "All tests passed." << endl;
     return EXIT_SUCCESS;
