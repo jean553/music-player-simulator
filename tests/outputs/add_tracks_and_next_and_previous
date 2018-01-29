@@ -1,0 +1,19 @@
+>>> >>> Playing tests/files/first
+>>> >>> Title: the first music title
+Codec: the first music codec
+Duration: 10
+>>> Playing tests/files/second
+>>> Title: the second music title
+Codec: the second music codec
+Duration: 20
+>>> >>> Title: the second music title
+Codec: the second music codec
+Duration: 20
+>>> Playing tests/files/first
+>>> Title: the first music title
+Codec: the first music codec
+Duration: 10
+>>> >>> Title: the first music title
+Codec: the first music codec
+Duration: 10
+>>> 
