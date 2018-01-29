@@ -17,8 +17,16 @@ The project contains:
  * Travis-CI build status
 
 The project has been successfully compiled and executed on:
+
  * Archlinux (01-29-2018)
+   (cmake 3.10.2, g++ 7.2, doxygen 1.8.14)
+
+```sh
+sudo pacman -Ss cmake g++ doxygen
+```
+
  * Ubuntu 14.04 (Trusty) (via Travis-CI)
+   (cmake 2.8.12, g++ 6)
 
 ## Table of contents
 
@@ -44,6 +52,7 @@ The project has been successfully compiled and executed on:
     * [resume](#resume)
     * [repeat](#repeat)
  - [File format](#file-format)
+ - [Improvements](#improvements)
 
 ## Program
 
@@ -215,3 +224,8 @@ title
 codec
 duration
 ```
+
+## Improvements
+
+Here the possible improvements:
+ * provide a Vagrant environment to automatically install the required compilation tools with the correct version
