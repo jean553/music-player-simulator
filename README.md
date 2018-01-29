@@ -228,4 +228,4 @@ duration
 ## Improvements
 
 Here the possible improvements:
- * provide a Vagrant environment to automatically install the required compilation tools with the correct version
+ * #71 provide a Vagrant environment to automatically install the required compilation tools with the correct version
