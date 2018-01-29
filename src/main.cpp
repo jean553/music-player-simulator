@@ -89,7 +89,7 @@ int main() {
 
             if (
                 command == "next" and
-                playedIndex != playlist.size() - 1
+                playedIndex != static_cast<int>(playlist.size() - 1)
             ) {
                 nextIndex += 1;
             } else if (
@@ -200,7 +200,8 @@ int main() {
             continue;
         }
 
-        std::ifstream file(playlist[nextIndex]);
+        const auto& selection = playlist[nextIndex];
+        std::ifstream file(selection);
         if (not file.is_open()) {
             std::cout << "Cannot open file." << std::endl;
             continue;
@@ -212,7 +213,7 @@ int main() {
             file
         );
 
-        std::cout << "Playing " + playlist[nextIndex] << std::endl;
+        std::cout << "Playing " + selection << std::endl;
 
         playedIndex = nextIndex;
     }
