@@ -76,34 +76,6 @@ int main() {
             continue;
         }
 
-        if (track != nullptr) {
-
-            if (command == "show_track") {
-                showTrack(track);
-                continue;
-            }
-
-            if (command == "show_position") {
-                showPosition(track);
-                continue;
-            }
-
-            if (command == "pause") {
-                track->pause();
-                continue;
-            }
-
-            if (command == "resume") {
-                cv.notify_one();
-                continue;
-            }
-
-            if (command == "repeat") {
-                track->repeat();
-                continue;
-            }
-        }
-
         if (
             command == "next" or
             command == "previous" or
@@ -210,6 +182,38 @@ int main() {
                     playlist.cbegin(),
                     searchedItem
                 );
+            }
+
+        } else {
+
+            if (track == nullptr) {
+                displayInputError();
+                continue;
+            }
+
+            if (command == "show_track") {
+                showTrack(track);
+                continue;
+            }
+
+            if (command == "show_position") {
+                showPosition(track);
+                continue;
+            }
+
+            if (command == "pause") {
+                track->pause();
+                continue;
+            }
+
+            if (command == "resume") {
+                cv.notify_one();
+                continue;
+            }
+
+            if (command == "repeat") {
+                track->repeat();
+                continue;
             }
         }
 
