@@ -1,0 +1,6 @@
+add_track tests/files/first
+play_track tests/files/first
+pause
+repeat
+resume
+exit
