@@ -141,7 +141,7 @@ int main() {
                 file
             );
 
-            std::cout << "Playing " + track->getTitle() << std::endl;
+            std::cout << "Playing " + playlist[nextIndex] << std::endl;
 
             playedIndex = nextIndex;
 
@@ -201,7 +201,7 @@ int main() {
             file
         );
 
-        std::cout << "Playing " + track->getTitle() << std::endl;
+        std::cout << "Playing " + playlist[nextIndex] << std::endl;
 
         playedIndex = nextIndex;
     }
