@@ -27,6 +27,14 @@ g++ -I includes tests/unit_tests.cpp -o bin/unit_tests libs/*
 ./bin/unit_tests
 ```
 
+## Functionnal tests
+
+Functionnal tests can be run *after the binary compilation*.
+
+```sh
+./tests/functionnal_tests.sh
+```
+
 ## Generate documentation
 
 ```sh

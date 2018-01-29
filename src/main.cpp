@@ -25,8 +25,6 @@ void displayInputError() {
  */
 int main() {
 
-    std::cout << "Imaginary player" << std::endl;
-
     srand(time(NULL));
 
     std::vector<std::string> playlist;

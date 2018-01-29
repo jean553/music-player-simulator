@@ -12,7 +12,10 @@ addons:
 before_script:
     - sudo apt-get install cmake -y
 
-script: 
+script:
+
+    # binary build
+
     - mkdir build && cd build/
     # force the compiler version on Ubuntu Trusty,
     # Travis-CI newest OS is Trusty;
@@ -21,8 +24,14 @@ script:
     - cmake -D CMAKE_CXX_COMPILER=g++-6 ..
     - make
 
+    # run unit tests
+
     - cd ../ && mkdir libs/
     - g++-6 -c -I includes src/playlist.cpp -o libs/playlist.o -lpthread
     - g++-6 -c -I includes src/track.cpp -o libs/track.o
     - g++-6 -I includes tests/unit_tests.cpp -o bin/unit_tests libs/* -lpthread
     - ./bin/unit_tests
+
+    # run functionnal tests
+
+    - ./tests/functionnal_tests.sh
