@@ -32,6 +32,6 @@ script:
     - g++-6 -I includes tests/unit_tests.cpp -o bin/unit_tests libs/* -lpthread
     - ./bin/unit_tests
 
-    # run functionnal tests
+    # run functional tests
 
-    - ./tests/functionnal_tests.sh
+    - ./tests/functional_tests.sh
