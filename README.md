@@ -11,7 +11,7 @@ The playing track position is incremented by the thread: this is how is "simulat
 The project contains:
  * the source code,
  * unit tests,
- * functionnal tests,
+ * functional tests,
  * usage documentation (following),
  * code documentation (doxygen),
  * Travis-CI build status
@@ -50,7 +50,7 @@ You can then follow the compilation/execution/testing steps below directly into 
  - [Unit tests](#unit-tests)
     * [Compilation](#compilation)
     * [Execution](#execution)
- - [Functionnal tests](#functionnal-tests)
+ - [Functional tests](#functional-tests)
  - [Generate documentation](#generate-documentation)
  - [Usage](#usage)
     * [exit](#exit)
@@ -101,12 +101,12 @@ g++ -I includes tests/unit_tests.cpp -o bin/unit_tests libs/*
 ./bin/unit_tests
 ```
 
-## Functionnal tests
+## Functional tests
 
-Functionnal tests can be run *after the binary compilation*.
+Functional tests can be run *after the binary compilation*.
 
 ```sh
-./tests/functionnal_tests.sh
+./tests/functional_tests.sh
 ```
 
 ## Generate documentation
