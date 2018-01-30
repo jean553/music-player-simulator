@@ -25,8 +25,22 @@ The project has been successfully compiled and executed on:
 sudo pacman -Ss cmake g++ doxygen
 ```
 
- * Ubuntu 14.04 (Trusty) (via Travis-CI)
+ * Ubuntu 17.10 (Artful)
+   (cmake 3.9.1, g++ 7.2)
+
+ * Ubuntu 14.04 (Trusty)
    (cmake 2.8.12, g++ 6)
+
+**Note**: instead of installing manually every requirements, this is possible
+to compile and run the project into a dedicated Docker container
+that includes all the required tools and provides an isolated environment.
+To compile and run into a container, just execute:
+
+```sh
+docker run --name music-player-simulator -t -i -v {PROJECT_PATH}/music-player-simulator jean553/cpp-dev /bin/zsh
+```
+
+You can then follow the compilation/execution/testing steps below directly into the container shell.
 
 ## Table of contents
 
