@@ -182,6 +182,5 @@ void loadTrack(
         )
     );
 
-    /* starts the player thread */
     cv.notify_one();
 } 
