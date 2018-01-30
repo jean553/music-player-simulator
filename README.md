@@ -37,7 +37,7 @@ that includes all the required tools and provides an isolated environment.
 To compile and run into a container, just execute:
 
 ```sh
-docker run --name music-player-simulator -t -i -v {PROJECT_PATH}/music-player-simulator jean553/cpp-dev /bin/zsh
+docker run --name music-player-simulator -t -i -v {PROJECT_PATH}:/music-player-simulator jean553/cpp-dev /bin/zsh
 ```
 
 You can then follow the compilation/execution/testing steps below directly into the container shell.
